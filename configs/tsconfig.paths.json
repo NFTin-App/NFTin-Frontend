@@ -1,0 +1,21 @@
+{
+    "extends": "@tsconfig/react-native/tsconfig.json",
+
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@features/*": ["src/features/*"],
+            "@features": ["src/features"],
+            "@entities/*": ["src/entities/*"],
+            "@entities": ["src/entities"],
+            "@shared/*": ["src/shared/*"],
+            "@shared": ["src/shared"],
+            "@widgets/*": ["src/widgets/*"],
+            "@widgets": ["src/widgets"],
+            "@screens/*": ["src/screens/*"],
+            "@screens": ["src/screens"],
+            "@app/*": ["src/app/*"],
+            "@app": ["src/app"]
+        }
+    }
+}

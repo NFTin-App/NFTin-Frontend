@@ -1,16 +1,8 @@
 {
-    "extends": "@tsconfig/react-native/tsconfig.json",
+    "extends": "./configs/tsconfig.paths.json",
     "compilerOptions": {
         "skipLibCheck": true,
-        "types": ["react-native"],
-        "baseUrl": ".",
-        "paths": {
-            "@features/*": ["src/features/*"],
-            "@entities/*": ["src/entities/*"],
-            "@shared/*": ["src/shared/*"],
-            "@widgets/*": ["src/widgets/*"],
-            "@screens/*": ["src/screens/*"],
-            "@app/*": ["src/app/*"]
-        }
-    }
+        "types": ["react-native"]
+    },
+    "include": ["./**/*", "./*", "configs/eslint.config.js"]
 }
