@@ -1,3 +1,3 @@
 node_modules/
-babel.config.js
+configs/babel.config.js
 metro.config.js

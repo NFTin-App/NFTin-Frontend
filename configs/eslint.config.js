@@ -9,9 +9,16 @@ const plugins = [
     'simple-import-sort',
     'import',
     'unused-imports',
+    'effector',
 ];
 
-const eslintExtends = ['@react-native-community', 'standard-with-typescript', 'prettier'];
+const eslintExtends = [
+    '@react-native-community',
+    'plugin:effector/recommended',
+    'plugin:effector/scope',
+    'standard-with-typescript',
+    'prettier',
+];
 
 const strictRules = {
     '@typescript-eslint/prefer-regexp-exec': 0,
@@ -25,12 +32,14 @@ const baseRules = {
     'prettier/prettier': 'error',
     'react-native/no-unused-styles': 'warn',
     'react-native/no-inline-styles': 'error',
+    'react/jsx-curly-spacing': 'off',
     'react-native/no-raw-text': [
         'warn',
         {
             skip: ['CustomText'],
         },
     ],
+    'react/react-in-jsx-scope': 'off',
     'react-native/no-single-element-style-arrays': 'warn',
     'object-curly-spacing': 'error',
     '@typescript-eslint/explicit-function-return-type': 'off',
@@ -38,19 +47,20 @@ const baseRules = {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     '@typescript-eslint/no-floating-promises': 'off',
+    '@typescript-eslint/no-misused-promises': [
+        'error',
+        {
+            checksVoidReturn: {
+                arguments: false,
+                attributes: false,
+            },
+        },
+    ],
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/require-array-sort-compare': [
         'error',
         {
             ignoreStringArrays: true,
-        },
-    ],
-    'react/jsx-curly-spacing': [
-        'error',
-        {
-            when: 'always',
-            allowMultiline: true,
-            children: true,
         },
     ],
     'eol-last': ['error', 'always'],

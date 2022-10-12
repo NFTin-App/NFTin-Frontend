@@ -1,5 +1,11 @@
+import React from 'react';
+
+import Routing from '@screens';
+
+import { withProviders } from './providers';
+
 const App = () => {
-    return null;
+    return <Routing />;
 };
 
-export default App;
+export default withProviders(App);

@@ -1,8 +1,29 @@
 {
-    "extends": "./configs/tsconfig.paths.json",
+    "extends": "@tsconfig/react-native/tsconfig.json",
     "compilerOptions": {
+        "lib": ["es2018", "dom"],
+        "types": ["react-native", "styled-components-react-native"],
+        "baseUrl": ".",
+        "alwaysStrict": true,
+        "noUnusedParameters": true,
+        "noStrictGenericChecks": true,
+        "noEmit": true,
+        "strict": true,
         "skipLibCheck": true,
-        "types": ["react-native"]
+        "paths": {
+            "@app": ["src/app"],
+            "@app/*": ["src/app/*"],
+            "@entities": ["src/entities"],
+            "@entities/*": ["src/entities/*"],
+            "@features": ["src/features"],
+            "@features/*": ["src/features/*"],
+            "@screens": ["src/screens"],
+            "@screens/*": ["src/screens/*"],
+            "@shared": ["src/shared"],
+            "@shared/*": ["src/shared/*"],
+            "@widgets": ["src/widgets"],
+            "@widgets/*": ["src/widgets/*"]
+        }
     },
-    "include": ["./**/*", "./*", "configs/eslint.config.js"]
+    "include": ["./**/*", "./*"]
 }
