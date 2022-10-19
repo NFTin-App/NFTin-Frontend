@@ -1,9 +1,9 @@
 import { memo } from 'react';
 import { Image as RNImage, ImageProps, StyleSheet } from 'react-native';
 
-import { ImageStyleProps, useImageStyle } from './styles';
+import { ImageStyleProps, useImageStyle } from '@shared/lib';
 
-interface Props extends ImageProps, ImageStyleProps {}
+type Props = ImageProps & ImageStyleProps;
 
 export const Image = memo(({ style, ...rest }: Props) => {
     const imageStyle = useImageStyle(rest);

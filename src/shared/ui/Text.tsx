@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text as RNText, TextProps } from 'react-native';
 
-import { TextStyleProps, useTextStyle } from './styles';
+import { TextStyleProps, useTextStyle } from '@shared/lib';
 
-interface Props extends TextProps, TextStyleProps {}
+type Props = TextProps & TextStyleProps;
 
 export const Text = React.memo(({ style, ...rest }: Props) => {
     const textStyle = useTextStyle(rest);

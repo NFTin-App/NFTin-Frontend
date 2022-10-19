@@ -5,9 +5,9 @@ import {
     TouchableOpacityProps,
 } from 'react-native';
 
-import { useViewStyle, ViewStyleProps } from './styles';
+import { useViewStyle, ViewStyleProps } from '@shared/lib';
 
-interface Props extends TouchableOpacityProps, ViewStyleProps {}
+type Props = TouchableOpacityProps & ViewStyleProps;
 
 export const TouchableOpacity = memo(({ style, ...rest }: Props) => {
     const viewStyle = useViewStyle(rest);

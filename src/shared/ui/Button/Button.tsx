@@ -1,13 +1,12 @@
 import { memo } from 'react';
 
-import { Text } from '../Text';
-import { useTheme } from '../ThemeProvider';
-import { TouchableOpacity } from '../TouchableOpacity';
+import { useTheme } from '@shared/lib';
+import { Text, TouchableOpacity } from '@shared/ui';
 
-interface Props extends Omit<React.ComponentProps<typeof TouchableOpacity>, 'children'> {
+type Props = Omit<React.ComponentProps<typeof TouchableOpacity>, 'children'> & {
     title: string;
     textAttirbutes?: React.ComponentProps<typeof Text>;
-}
+};
 
 export const Button = memo(({ title, textAttirbutes, ...props }: Props) => {
     const { theme } = useTheme();

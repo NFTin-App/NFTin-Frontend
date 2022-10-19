@@ -1,9 +1,9 @@
 import { memo } from 'react';
 import { StyleSheet, View as RNView, ViewProps } from 'react-native';
 
-import { useViewStyle, ViewStyleProps } from './styles';
+import { useViewStyle, ViewStyleProps } from '@shared/lib';
 
-interface Props extends ViewProps, ViewStyleProps {}
+type Props = ViewProps & ViewStyleProps;
 
 export const View = memo(({ style, ...rest }: Props) => {
     const viewStyle = useViewStyle(rest);

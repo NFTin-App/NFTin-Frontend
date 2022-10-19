@@ -1,10 +1,10 @@
 import { memo } from 'react';
 
-import { useTheme } from '../ThemeProvider';
+import { useTheme } from '../../lib/ThemeProvider';
 
 import { Button } from './Button';
 
-interface Props extends React.ComponentProps<typeof Button> {}
+type Props = React.ComponentProps<typeof Button>;
 
 export const OutlineButton = memo((props: Props) => {
     const { theme } = useTheme();
