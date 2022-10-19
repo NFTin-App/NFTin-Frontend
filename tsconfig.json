@@ -2,7 +2,7 @@
     "extends": "@tsconfig/react-native/tsconfig.json",
     "compilerOptions": {
         "lib": ["es2018", "dom"],
-        "types": ["react-native", "styled-components-react-native"],
+        "types": ["react-native"],
         "baseUrl": ".",
         "alwaysStrict": true,
         "noUnusedParameters": true,

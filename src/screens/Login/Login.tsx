@@ -1,12 +1,9 @@
-import { View } from 'react-native';
-
 import { ConnectWalletButton } from '@features/auth';
-
-import styles from './styles.scss';
+import { View } from '@shared/ui';
 
 const LoginPage = () => {
     return (
-        <View style={styles.main}>
+        <View flex={1} paddingHorizontal={16} justifyContent={'center'}>
             <ConnectWalletButton />
         </View>
     );

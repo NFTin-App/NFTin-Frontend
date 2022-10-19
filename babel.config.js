@@ -15,13 +15,6 @@ module.exports = {
                 },
             },
         ],
-        'react-native-classname-to-style',
-        [
-            'react-native-platform-specific-extensions',
-            {
-                extensions: ['scss', 'sass'],
-            },
-        ],
         'react-native-reanimated/plugin',
     ],
 };
