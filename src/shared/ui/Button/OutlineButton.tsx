@@ -7,9 +7,9 @@ type Props = React.ComponentProps<typeof Button>;
 export const OutlineButton = memo((props: Props) => {
     return (
         <Button
-            bgColor={'transparent'}
+            bgColor='transparent'
             borderWidth={2}
-            borderColor={'purple'}
+            borderColor='purple'
             textAttirbutes={{ color: 'purple' }}
             {...props}
         />
