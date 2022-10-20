@@ -1,7 +1,6 @@
 import { memo } from 'react';
 
-import { useTheme } from '@shared/lib';
-import { Text, TouchableOpacity } from '@shared/ui';
+import { Text, TouchableOpacity, useTheme } from '@shared/ui';
 
 type Props = Omit<React.ComponentProps<typeof TouchableOpacity>, 'children'> & {
     title: string;

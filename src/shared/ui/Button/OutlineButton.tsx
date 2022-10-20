@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { useTheme } from '../../lib/ThemeProvider';
+import { useTheme } from '@shared/ui';
 
 import { Button } from './Button';
 
