@@ -7,5 +7,5 @@ import { connectWalletFx } from '../model';
 export const ConnectWallet = () => {
     const connectWallet = useEvent(connectWalletFx);
 
-    return <Button title='Connect Wallet' textAttirbutes={{}} onPress={connectWallet} />;
+    return <Button title='Connect Wallet' onPress={connectWallet} />;
 };
