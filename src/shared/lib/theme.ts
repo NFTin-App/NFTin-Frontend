@@ -1,6 +1,9 @@
 import { Pallete, Theme } from '@shared/types';
 
 const palette: Pallete = {
+    primary: '#8067EB',
+    accent100: 'DC5D83',
+    accent200: '#F61256',
     purple: '#8067EB',
     white: '#FFFFFF',
     pink: '#E55A84',
@@ -12,4 +15,8 @@ const palette: Pallete = {
 
 export const theme: Theme = {
     palette,
+    icon: {
+        size: 24,
+        strokeWidth: 2,
+    },
 };
