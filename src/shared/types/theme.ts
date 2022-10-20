@@ -1,5 +1,8 @@
 export interface Theme {
     palette: {
+        primary: string;
+        accent100: string;
+        accent200: string;
         purple: string;
         white: string;
         pink: string;
@@ -7,6 +10,10 @@ export interface Theme {
         gray100: string;
         gray200: string;
         gray300: string;
+    };
+    icon: {
+        size: number;
+        strokeWidth: number;
     };
 }
 
