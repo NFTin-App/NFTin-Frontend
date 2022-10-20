@@ -7,5 +7,6 @@ type Props = ImageProps & ImageStyleProps;
 
 export const Image = memo(({ style, ...rest }: Props) => {
     const imageStyle = useImageStyle(rest);
+
     return <RNImage {...rest} style={StyleSheet.compose(imageStyle, style)} />;
 });

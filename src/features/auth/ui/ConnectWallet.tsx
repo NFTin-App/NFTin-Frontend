@@ -2,10 +2,10 @@ import { useEvent } from 'effector-react';
 
 import { Button } from '@shared/ui';
 
-import { authModel } from '..';
+import { connectWalletFx } from '../model';
 
 export const ConnectWallet = () => {
-    const connectWallet = useEvent(authModel.connectWalletFx);
+    const connectWallet = useEvent(connectWalletFx);
 
-    return <Button title={'Connect Wallet'} onPress={connectWallet} />;
+    return <Button title={'Connect Wallet'} textAttirbutes={{}} onPress={connectWallet} />;
 };
