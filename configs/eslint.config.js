@@ -102,7 +102,7 @@ const baseRules = {
             argsIgnorePattern: '^_',
         },
     ],
-    'react/jsx-curly-brace-presence': ['error', 'always'],
+    'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
 };
 
 let extendRules = {};

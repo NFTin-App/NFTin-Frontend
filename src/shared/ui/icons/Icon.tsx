@@ -15,6 +15,7 @@ export const Icon = memo(
     ({ width, height, strokeWidth, children, outline, style, ...rest }: Props) => {
         const { theme } = useTheme();
         const viewStyle = useViewStyle(rest);
+
         return (
             <Svg
                 width={width ?? theme.icon.size}

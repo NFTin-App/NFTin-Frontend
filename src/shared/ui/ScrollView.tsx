@@ -7,5 +7,6 @@ type Props = ScrollViewProps & ViewStyleProps;
 
 export const ScrollViwe = memo(({ style, ...rest }: Props) => {
     const viewStyle = useViewStyle(rest);
+
     return <RNScrollView style={StyleSheet.compose(viewStyle, style)} {...rest} />;
 });
