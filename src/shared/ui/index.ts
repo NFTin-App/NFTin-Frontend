@@ -1,4 +1,5 @@
 export * from './Button';
+export * from './icons';
 export * from './Image';
 export * from './ScrollView';
 export * from './Text';
