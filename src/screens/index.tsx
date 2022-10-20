@@ -2,7 +2,7 @@ import { useStore } from 'effector-react';
 
 import { viewerModel } from '@entities/viewer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LoginPage from '@screens/Login';
+import { LoginPage } from '@screens/Login';
 
 import ProfilePage from './viewer/Profile';
 export * from './Login';

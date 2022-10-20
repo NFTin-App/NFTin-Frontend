@@ -1,11 +1,10 @@
 import { FC } from 'react';
-import { ThemeProvider } from 'styled-components';
 
-import { theme } from '@shared/lib';
+import { ThemeProvider } from '@shared/ui';
 
 export const withTheme = (Component: FC) => () => {
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider>
             <Component />
         </ThemeProvider>
     );

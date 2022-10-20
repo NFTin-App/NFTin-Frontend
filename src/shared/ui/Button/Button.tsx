@@ -1,19 +1,26 @@
-import { ReactElement } from 'react';
-import { TextProps, TouchableOpacityProps } from 'react-native';
-import styled from 'styled-components/native';
+import { memo } from 'react';
 
-interface Props extends TouchableOpacityProps {
-    children: ReactElement<TextProps>;
-    className?: string;
-}
+import { Text, TouchableOpacity, useTheme } from '@shared/ui';
 
-export const Button = ({ children, ...props }: Props) => {
-    return <StyledTouchableOpacity {...props}>{children}</StyledTouchableOpacity>;
+type Props = Omit<React.ComponentProps<typeof TouchableOpacity>, 'children'> & {
+    title: string;
+    textAttirbutes?: React.ComponentProps<typeof Text>;
 };
 
-const StyledTouchableOpacity = styled.TouchableOpacity`
-    padding: 23px
-    align-items: center
-    border-radius: 18px
-    background: ${(p) => p.theme.palette.purple}
-`;
+export const Button = memo(({ title, textAttirbutes, ...props }: Props) => {
+    const { theme } = useTheme();
+
+    return (
+        <TouchableOpacity
+            p={23}
+            alignItems={'center'}
+            borderRadius={18}
+            bgColor={theme.palette.purple}
+            {...props}
+        >
+            <Text color={theme.palette.white} {...textAttirbutes}>
+                {title}
+            </Text>
+        </TouchableOpacity>
+    );
+});
