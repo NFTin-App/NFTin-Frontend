@@ -1,6 +1,7 @@
 export interface Theme {
     palette: {
-        primary: string;
+        primary100: string;
+        primary200: string;
         accent100: string;
         accent200: string;
         purple: string;

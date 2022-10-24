@@ -1,5 +1,5 @@
 declare module 'react-native/Libraries/Components/View/ReactNativeStyleAttributes' {
-  const ReactNativeStyleAttributes: object;
+    const ReactNativeStyleAttributes: object;
 
-  export default ReactNativeStyleAttributes;
+    export default ReactNativeStyleAttributes;
 }

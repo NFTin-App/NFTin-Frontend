@@ -25,5 +25,5 @@
             "@widgets/*": ["src/widgets/*"]
         }
     },
-    "include": ["./**/*", "./*"]
+    "include": ["src", "types"]
 }
