@@ -1,4 +1,6 @@
 import { useMemo } from 'react';
+import { Dimensions } from 'react-native';
+import { Path, Svg } from 'react-native-svg';
 
 import { BottomTabBar } from '@react-navigation/bottom-tabs';
 import { assert } from '@shared/lib';
@@ -6,6 +8,33 @@ import { DropShadow, useTheme, View } from '@shared/ui';
 
 import { RocketButton } from './RocketButton';
 import { TabBarButton } from './TabBarButton';
+
+const window = Dimensions.get('window');
+const NOTCH_WIDTH = 150;
+const TABBAR_HEIGHT = 75;
+const CORNER_RADIUS = 24;
+
+const width = window.width;
+
+const leftEnd = Math.ceil((width - NOTCH_WIDTH) / 2);
+const rightStart = Math.ceil((width + NOTCH_WIDTH) / 2);
+const middle = Math.ceil(width / 2);
+
+const d = `
+    M 0 ${TABBAR_HEIGHT}
+    L 0 ${CORNER_RADIUS}
+    A ${CORNER_RADIUS} ${CORNER_RADIUS} 0 0 1 ${CORNER_RADIUS} 0
+    L ${leftEnd} 0
+    C ${leftEnd + 14} 0, ${leftEnd + 24} 8, ${leftEnd + 30} 15
+    C ${leftEnd + 38} 25, ${leftEnd + 58} 33, ${middle} 33
+    C ${rightStart - 58} 33, ${rightStart + -38} 25, ${rightStart - 30} 15
+    C ${rightStart - 24} 8, ${rightStart - 14} 0, ${rightStart} 0
+    L ${rightStart} 0
+    L ${width - CORNER_RADIUS} 0
+    A ${CORNER_RADIUS} ${CORNER_RADIUS} 0 0 1 ${width} ${CORNER_RADIUS}
+    L ${width} ${TABBAR_HEIGHT}
+    L 0 ${TABBAR_HEIGHT}
+    `;
 
 type Props = React.ComponentProps<typeof BottomTabBar>;
 
@@ -46,16 +75,28 @@ export const TabBar = ({ state, descriptors }: Props) => {
             bottom={0}
             right={0}
             left={0}
-            height={75}
+            height={TABBAR_HEIGHT}
         >
+            <Svg
+                width={width}
+                height={TABBAR_HEIGHT}
+                viewBox={`0 0 ${width} ${TABBAR_HEIGHT}`}
+                fill={theme.palette.white}
+            >
+                <Path d={d} />
+            </Svg>
             <View
+                position='absolute'
+                top={0}
+                bottom={0}
+                right={0}
+                left={0}
                 flex={1}
                 pt={13}
                 paddingHorizontal={24}
                 flexDirection='row'
                 alignItems='flex-start'
                 justifyContent='space-between'
-                backgroundColor={theme.palette.white}
             >
                 <View flexDirection='row' flex={1} justifyContent='space-between'>
                     {leftItems}
