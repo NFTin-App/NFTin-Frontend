@@ -2,11 +2,12 @@ import { useCallback } from 'react';
 
 import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 import { RouteProp } from '@react-navigation/core';
-import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '@shared/types';
 import { TouchableWithoutFeedback, useTheme, View } from '@shared/ui';
 
 interface Props extends BottomTabNavigationOptions {
-    route: RouteProp<ParamListBase, string>;
+    route: RouteProp<RootStackParamList, keyof RootStackParamList>;
     focused?: boolean;
 }
 
@@ -15,8 +16,6 @@ export const TabBarButton = ({ route, focused = false, tabBarIcon }: Props) => {
     const { theme } = useTheme();
     const handlePress = useCallback(() => {
         if (!focused) {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-expect-error
             navigate(route.name);
         }
     }, [focused, navigate, route.name]);

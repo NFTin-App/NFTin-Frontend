@@ -1,5 +1,3 @@
-import { useMemo } from 'react';
-
 import { ActivityFeed } from '@screens/ActivityFeed';
 import { Home } from '@screens/Home';
 import { Search } from '@screens/Search';
@@ -9,12 +7,12 @@ import { HomeIcon, MagnifyIcon, NewsIcon, UserIcon } from '@shared/ui';
 import { TabBarIcon } from './TabBarIcon';
 import { TabNavigator } from './TabNavigator';
 
-export const Tabs = () => {
-    const homeTabIcon = useMemo(() => TabBarIcon(HomeIcon), []);
-    const searchTabIcon = useMemo(() => TabBarIcon(MagnifyIcon), []);
-    const actifityFeedTabIcon = useMemo(() => TabBarIcon(NewsIcon), []);
-    const profileTabIcon = useMemo(() => TabBarIcon(UserIcon), []);
+const homeTabIcon = TabBarIcon(HomeIcon);
+const searchTabIcon = TabBarIcon(MagnifyIcon);
+const actifityFeedTabIcon = TabBarIcon(NewsIcon);
+const profileTabIcon = TabBarIcon(UserIcon);
 
+export const Tabs = () => {
     return (
         <TabNavigator>
             <TabNavigator.Screen

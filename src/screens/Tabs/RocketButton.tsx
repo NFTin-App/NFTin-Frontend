@@ -13,12 +13,12 @@ import { DropShadow, RocketIcon, TouchableWithoutFeedback, useTheme, View } from
 
 const GRADIENT_NAME = 'background-gradient';
 
+const backgroundColor = `url(#${GRADIENT_NAME})`;
+
 type Props = React.ComponentProps<typeof TouchableWithoutFeedback>;
 
 export const RocketButton = memo(({ onPress, ...rest }: Props) => {
     const { theme } = useTheme();
-
-    const backgroundColor = `url(#${GRADIENT_NAME})`;
 
     const scale = useSharedValue(1);
     const scaleAnimatedStyle = useAnimatedStyle(() => {

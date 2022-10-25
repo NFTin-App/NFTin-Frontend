@@ -3,7 +3,9 @@ import { Dimensions } from 'react-native';
 import { Path, Svg } from 'react-native-svg';
 
 import { BottomTabBar } from '@react-navigation/bottom-tabs';
+import { TabNavigationState } from '@react-navigation/native';
 import { assert } from '@shared/lib';
+import { RootStackParamList } from '@shared/types';
 import { DropShadow, useTheme, View } from '@shared/ui';
 
 import { RocketButton } from './RocketButton';
@@ -20,7 +22,7 @@ const leftEnd = Math.ceil((width - NOTCH_WIDTH) / 2);
 const rightStart = Math.ceil((width + NOTCH_WIDTH) / 2);
 const middle = Math.ceil(width / 2);
 
-const d = `
+const tabbarShape = `
     M 0 ${TABBAR_HEIGHT}
     L 0 ${CORNER_RADIUS}
     A ${CORNER_RADIUS} ${CORNER_RADIUS} 0 0 1 ${CORNER_RADIUS} 0
@@ -36,7 +38,9 @@ const d = `
     L 0 ${TABBAR_HEIGHT}
     `;
 
-type Props = React.ComponentProps<typeof BottomTabBar>;
+type Props = Omit<React.ComponentProps<typeof BottomTabBar>, 'state'> & {
+    state: TabNavigationState<RootStackParamList>;
+};
 
 export const TabBar = ({ state, descriptors }: Props) => {
     assert(state.routes.length === 4);
@@ -83,7 +87,7 @@ export const TabBar = ({ state, descriptors }: Props) => {
                 viewBox={`0 0 ${width} ${TABBAR_HEIGHT}`}
                 fill={theme.palette.white}
             >
-                <Path d={d} />
+                <Path d={tabbarShape} />
             </Svg>
             <View
                 position='absolute'
