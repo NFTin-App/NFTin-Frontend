@@ -19,7 +19,6 @@ type Props = React.ComponentProps<typeof TouchableWithoutFeedback>;
 
 export const RocketButton = memo(({ onPress, ...rest }: Props) => {
     const { theme } = useTheme();
-
     const scale = useSharedValue(1);
     const scaleAnimatedStyle = useAnimatedStyle(() => {
         return {
@@ -55,7 +54,7 @@ export const RocketButton = memo(({ onPress, ...rest }: Props) => {
                     shadowOffset={{ width: 0, height: 4 }}
                     shadowOpacity={0.25}
                     shadowRadius={8}
-                    shadowColor={theme.palette.primary200}
+                    shadowColor='primary200'
                 >
                     <View justifyContent='center' alignItems='center'>
                         <Svg viewBox='0 0 95 62' width={95} height={62}>

@@ -68,7 +68,7 @@ export const TabBar = ({ state, descriptors }: Props) => {
 
     return (
         <DropShadow
-            shadowColor={theme.palette.primary200}
+            shadowColor='primary200'
             shadowOpacity={0.15}
             shadowOffset={{
                 width: 0,
