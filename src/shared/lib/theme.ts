@@ -1,8 +1,9 @@
 import { Pallete, Theme } from '@shared/types';
 
 const palette: Pallete = {
-    primary: '#8067EB',
-    accent100: 'DC5D83',
+    primary100: '#8067EB',
+    primary200: '#533EAB',
+    accent100: '#DC5D83',
     accent200: '#F61256',
     purple: '#8067EB',
     white: '#FFFFFF',

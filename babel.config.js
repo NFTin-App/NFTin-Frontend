@@ -5,6 +5,7 @@ module.exports = {
         [
             'module-resolver',
             {
+                root: ['./src'],
                 alias: {
                     '@app': `./src/app`,
                     '@screens': `./src/screens`,
