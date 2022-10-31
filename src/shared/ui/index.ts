@@ -2,6 +2,8 @@ export * from './Button';
 export * from './DropShadow';
 export * from './icons';
 export * from './Image';
+export * from './ImageBackground';
+export * from './SafeAreaView';
 export * from './ScrollView';
 export * from './Text';
 export * from './ThemeProvider';

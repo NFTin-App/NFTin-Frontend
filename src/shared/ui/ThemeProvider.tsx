@@ -1,7 +1,9 @@
-import { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 import { theme as defaultTheme } from '@shared/lib';
-import { Theme } from '@shared/types';
+import { Pallete, Theme } from '@shared/types';
+
+type Color = keyof Pallete | (string & {});
 
 export interface ThemeContext {
     theme: Theme;
@@ -19,4 +21,11 @@ export const ThemeProvider = ({ children, theme }: Props) => {
     return <themeContext.Provider value={state}>{children}</themeContext.Provider>;
 };
 
-export const useTheme = (): ThemeContext => useContext(themeContext);
+export const useTheme = () => {
+    const { theme } = useContext(themeContext);
+    const getColor = (color: Color) => theme.palette[color as keyof Pallete] || color;
+    return {
+        theme,
+        getColor,
+    };
+};

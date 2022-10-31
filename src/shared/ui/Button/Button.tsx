@@ -5,10 +5,10 @@ import { TouchableOpacity } from '../TouchableOpacity';
 
 type Props = Omit<React.ComponentProps<typeof TouchableOpacity>, 'children'> & {
     title: string;
-    textAttirbutes?: React.ComponentProps<typeof Text>;
+    textAttributes?: React.ComponentProps<typeof Text>;
 };
 
-export const Button = memo(({ title, textAttirbutes, ...rest }: Props) => {
+export const Button = memo(({ title, textAttributes, ...rest }: Props) => {
     return (
         <TouchableOpacity
             alignItems='center'
@@ -18,7 +18,7 @@ export const Button = memo(({ title, textAttirbutes, ...rest }: Props) => {
             height={64}
             {...rest}
         >
-            <Text color='white' fontSize={16} fontWeight='500' {...textAttirbutes}>
+            <Text color='white' fontSize={16} fontWeight='500' {...textAttributes}>
                 {title}
             </Text>
         </TouchableOpacity>

@@ -1,3 +1,6 @@
+export * from './ChatIcon';
+export * from './FlashBoltIcon';
+export * from './HeartIcon';
 export * from './HomeIcon';
 export * from './Icon';
 export * from './MagnifyIcon';

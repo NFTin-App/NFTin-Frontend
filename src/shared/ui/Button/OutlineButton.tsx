@@ -10,7 +10,7 @@ export const OutlineButton = memo((props: Props) => {
             bgColor='transparent'
             borderWidth={2}
             borderColor='primary100'
-            textAttirbutes={{ color: 'primary100' }}
+            textAttributes={{ color: 'primary100' }}
             {...props}
         />
     );
