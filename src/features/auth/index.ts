@@ -1,2 +1,2 @@
-export * as authModel from './model';
+export * as authModel from './authModel';
 export * from './ui';

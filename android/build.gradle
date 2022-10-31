@@ -25,6 +25,11 @@ buildscript {
         classpath("de.undercouch:gradle-download-task:5.0.1")
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        // For WebP support, including animated WebP
+        classpath('com.facebook.fresco:animated-webp:1.3.0')
+        classpath('com.facebook.fresco:webpsupport:1.3.0')
+        // For WebP support, without animations
+        classpath('com.facebook.fresco:webpsupport:1.3.0')    
     }
 }
 
@@ -49,3 +54,5 @@ allprojects {
         maven { url 'https://www.jitpack.io' }
     }
 }
+
+

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Routing from '@screens';
+import { Routing } from '@screens/routes';
 
 import { withProviders } from './providers';
 
