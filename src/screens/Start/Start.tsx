@@ -43,54 +43,57 @@ export const Start = () => {
     const actionButtonAnimationController = useSharedValue(0);
 
     useEffect(() => {
-        nftCardAnimationController.value = withTiming(1, {
-            duration: 200,
-            easing: Easing.out(Easing.ease),
-        });
-        rocketAnimationController.value = withDelay(
-            200,
+        nftCardAnimationController.value = withDelay(
+            100,
             withTiming(1, {
-                duration: 400,
+                duration: 200,
+                easing: Easing.out(Easing.ease),
+            })
+        );
+        rocketAnimationController.value = withDelay(
+            100,
+            withTiming(1, {
+                duration: 500,
                 easing: Easing.out(Easing.ease),
             })
         );
         starsAnimationController.value = withDelay(
             600,
             withTiming(1, {
-                duration: 500,
-                easing: Easing.in(Easing.ease),
+                duration: 800,
+                easing: Easing.bounce,
             })
         );
         button1AnimationController.value = withDelay(
-            1200,
+            2400,
             withTiming(1, {
                 duration: 600,
             })
         );
         button2AnimationController.value = withDelay(
-            1700,
+            2800,
             withTiming(1, {
                 duration: 600,
             })
         );
         button3AnimationController.value = withDelay(
-            2200,
+            3200,
             withTiming(1, {
                 duration: 600,
             })
         );
         textAnimationController.value = withDelay(
-            2600,
+            1100,
             withTiming(1, {
-                duration: 600,
-                easing: Easing.ease,
+                duration: 1600,
+                easing: Easing.in(Easing.ease),
             })
         );
         actionButtonAnimationController.value = withDelay(
-            3000,
+            3800,
             withTiming(1, {
-                duration: 800,
-                easing: Easing.ease,
+                duration: 400,
+                easing: Easing.in(Easing.ease),
             })
         );
     }, [
@@ -104,7 +107,7 @@ export const Start = () => {
         actionButtonAnimationController,
     ]);
 
-    const handleButtonPress = useCallback(() => navigate('Tabs'), [navigate]);
+    const handleButtonPress = useCallback(() => navigate('Login'), [navigate]);
 
     const rocketStyle = useAnimatedStyle(() => {
         const rocketY = interpolate(rocketAnimationController.value, [0, 1], [1200, 0]);
@@ -155,7 +158,7 @@ export const Start = () => {
     return (
         <SafeAreaView flex={1}>
             <ImageBackground flex={1} source={background} resizeMode='stretch'>
-                <View flex={1} paddingHorizontal={24} paddingBottom={60}>
+                <View flex={1} paddingHorizontal={24} paddingBottom={40}>
                     <View alignItems='center' position='absolute' top={42} left={0} right={0}>
                         <View>
                             <AnimatedImage
