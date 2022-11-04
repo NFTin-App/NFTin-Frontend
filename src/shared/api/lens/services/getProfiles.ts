@@ -8,15 +8,14 @@ interface GetProfilesParams extends QueryParams {
     address: string;
 }
 
-export const getProfilesFx = createEffect(
-    async ({ address, queryParams }: GetProfilesParams) =>
-        await resolved(() => {
-            const profiles = query.profiles({
-                request: { ownedBy: [address] },
-            });
+export const getProfilesFx = createEffect(async ({ address, queryParams }: GetProfilesParams) => {
+    await resolved(() => {
+        const profiles = query.profiles({
+            request: { ownedBy: [address] },
+        });
 
-            if (!profiles) return null;
+        if (!profiles) return null;
 
-            return selectFields(profiles.items, queryParams);
-        })
-);
+        return selectFields(profiles.items, queryParams);
+    });
+});

@@ -65,6 +65,7 @@
         "react-native-safe-area-context": "^4.4.1",
         "react-native-screens": "^3.18.2",
         "react-native-svg": "9.6.4",
+        "react-native-video": "^5.2.1",
         "readable-stream": "1.0.33",
         "recompose": "^0.30.0",
         "typechain": "^8.1.0"
@@ -78,6 +79,7 @@
         "@typechain/ethers-v5": "^10.1.0",
         "@types/lodash": "^4.14.186",
         "@types/react-native": "^0.70.4",
+        "@types/react-native-video": "^5.0.14",
         "@types/react-test-renderer": "^18.0.0",
         "@types/recompose": "^0.30.10",
         "@typescript-eslint/eslint-plugin": "^5.40.0",

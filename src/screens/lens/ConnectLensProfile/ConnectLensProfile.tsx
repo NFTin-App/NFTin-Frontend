@@ -1,8 +1,9 @@
 import { useGate, useStore } from 'effector-react';
 
 import { ScreenProps } from '@shared/types';
-import { Button, GhostButton, LensIcon, OutlineButton, Text, View } from '@shared/ui';
+import { Button, GhostButton, OutlineButton, Text, Video, View } from '@shared/ui';
 
+import lensLogo from './assets/lens.mp4';
 import { $isUnavailableProfiles, pageGate } from './connectLensProfileModel';
 
 export const ConnectLensProfile = ({ navigation }: ScreenProps<'ConnectLensProfile'>) => {
@@ -13,7 +14,18 @@ export const ConnectLensProfile = ({ navigation }: ScreenProps<'ConnectLensProfi
     return (
         <View flex={2} paddingHorizontal={24} alignItems='center' justifyContent='space-around'>
             <View width='80%' alignItems='center' marginVertical={40}>
-                <LensIcon />
+                <Video
+                    source={lensLogo}
+                    resizeMode='contain'
+                    repeat
+                    width={123}
+                    height={123}
+                    borderRadius={100}
+                    borderWidth={2}
+                    overflow='hidden'
+                    alignSelf='center'
+                    borderColor='#00501E'
+                />
 
                 <Text
                     color='black'
