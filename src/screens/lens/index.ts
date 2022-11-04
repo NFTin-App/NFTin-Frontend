@@ -1,2 +1,2 @@
-export * from './ConnectLensProfile';
+export * from './ConnectLensProfile/ConnectLensProfile';
 export * from './SelectLensProfile';

@@ -6,6 +6,8 @@ interface LinkLensProfileAddressParams {
 
 export const linkLensProfileToAddressFx = attachContract<LinkLensProfileAddressParams>(
     async ({ contract, profileId }) => {
-        await contract.functions.onboardNewProfile(profileId);
+        const tx = await contract.functions.onboardNewProfile(profileId);
+
+        await tx.wait();
     }
 );

@@ -7,3 +7,8 @@ export interface Profile {
     name?: Maybe<string>;
     picture?: Maybe<ProfileMedia>;
 }
+
+export interface ProfileItem {
+    handle: string;
+    id: string;
+}

@@ -34,7 +34,7 @@ sample({
 
 export const getViewerProfileId = createEvent();
 
-export const getViewerProfileIdDone = getViewerProfileIdFx.doneData;
+export const getViewerProfileIdFinished = getViewerProfileIdFx.doneData;
 
 sample({
     clock: getViewerProfileId,

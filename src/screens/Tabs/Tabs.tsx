@@ -14,7 +14,7 @@ const profileTabIcon = TabBarIcon(UserIcon);
 
 export const Tabs = () => {
     return (
-        <TabNavigator>
+        <TabNavigator initialRouteName='Profile'>
             <TabNavigator.Screen
                 name='Home'
                 component={Home}

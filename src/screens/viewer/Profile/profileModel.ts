@@ -28,7 +28,7 @@ sample({
 });
 
 condition({
-    source: viewerModel.getViewerProfileIdDone,
+    source: viewerModel.getViewerProfileIdFinished,
     if: isValidProfile,
     then: getViewerProfile,
     else: redirectToConnect,
@@ -43,6 +43,6 @@ sample({
 });
 
 sample({
-    clock: viewerModel.getViewerProfileIdDone,
+    clock: viewerModel.getViewerProfileIdFinished,
     target: profileModel.getProfile,
 });

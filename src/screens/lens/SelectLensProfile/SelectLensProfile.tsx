@@ -1,21 +1,21 @@
 import { useState } from 'react';
 import { FlatList, ListRenderItem } from 'react-native';
-import { useEvent, useGate, useStore } from 'effector-react';
+import { useEvent, useGate, useStore, useUnit } from 'effector-react';
 
 import { authModel } from '@features/auth';
 import { ScreenProps } from '@shared/types';
 import { OutlineButton, Text, View } from '@shared/ui';
 
 import { ProfileItem } from './ProfileSelectItem';
-import { $profileId, $profiles, pageGate, updateProfileId } from './selectLensProfileModel';
-import { ProfileItem as ProfileItemData } from './selectProfileTypes';
+import { $profileId, pageGate, updateProfileId } from './selectLensProfileModel';
+
+import { ProfileItem as TProfileItem, profileModel } from '@entities/profile';
 
 export const SelectLensProfile = ({ navigation }: ScreenProps<'SelectLensProfile'>) => {
     useGate(pageGate, navigation);
 
-    const profileId = useStore($profileId);
-    const setProfileId = useEvent(updateProfileId);
-    const profiles = useStore($profiles);
+    const [profileId, setProfileId] = useUnit([$profileId, updateProfileId]);
+    const profiles = useStore(profileModel.$profiles);
     const linkLensProfileToAddress = useEvent(authModel.linkLensProfileToAddress);
     const [isPending, setIsPending] = useState(false);
 
@@ -23,7 +23,7 @@ export const SelectLensProfile = ({ navigation }: ScreenProps<'SelectLensProfile
         setProfileId(id);
     };
 
-    const renderItem: ListRenderItem<ProfileItemData> = ({ item }) => {
+    const renderItem: ListRenderItem<TProfileItem> = ({ item }) => {
         const { handle, id } = item;
 
         return (
