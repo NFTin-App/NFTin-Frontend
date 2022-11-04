@@ -5,7 +5,7 @@ import { Icon } from './Icon';
 type Props = React.ComponentProps<typeof Icon>;
 
 export const LensIcon = (props: Props) => (
-    <Icon width={123} height={123} fill='none' {...props}>
+    <Icon width={123} height={123} {...props}>
         <Circle
             cx={61.5}
             cy={61.5}

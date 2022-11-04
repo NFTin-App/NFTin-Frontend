@@ -6,6 +6,10 @@ interface StackParamList {
     SelectLensProfile: undefined;
     Loading: undefined;
     Profile: undefined; // TODO переименовать в ViewerProfile
+    Tabs: undefined;
+    ActivityFeed: undefined;
+    Home: undefined;
+    Search: undefined;
 }
 
 export type RootStackParamList = Record<keyof StackParamList, StackParamList[keyof StackParamList]>;

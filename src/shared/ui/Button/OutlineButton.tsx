@@ -9,8 +9,8 @@ export const OutlineButton = memo(({ textAttirbutes, ...rest }: Props) => {
         <Button
             bgColor='transparent'
             borderWidth={2}
-            borderColor='purple'
-            textAttirbutes={{ color: 'purple', ...textAttirbutes }}
+            borderColor='primary100'
+            textAttirbutes={{ color: 'primary100', ...textAttirbutes }}
             {...rest}
         />
     );

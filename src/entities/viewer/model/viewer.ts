@@ -20,6 +20,7 @@ const initViewerFx = createEffect((connector: Connector) => ({
 }));
 
 export const $viewer = createStore<Nullable<Viewer>>(null);
+export const $isConnected = $viewer.map((viewer) => !!viewer?.isConnected);
 
 sample({
     clock: connectorInited,
