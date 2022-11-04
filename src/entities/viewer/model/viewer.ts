@@ -1,12 +1,12 @@
-import { attach, createEffect, createEvent, createStore, forward, sample } from 'effector';
+import { attach, createEffect, createEvent, createStore, sample } from 'effector';
+import { combineEvents, debug } from 'patronum';
 
 import { getProfileIdFx as getProfileIdFxApi } from '@shared/api/nftinContract';
-import { Address, Connector, Nullable, Signer } from '@shared/types';
+import { Connector, Nullable } from '@shared/types';
 
 import { Viewer } from '../viewerTypes';
 
-import { $connector, connectorInited } from './connector';
-import { combineEvents, debug } from 'patronum';
+import { connectorInited } from './connector';
 import { signerInited } from './signer';
 
 const getViewerProfileIdFx = attach({ effect: getProfileIdFxApi });

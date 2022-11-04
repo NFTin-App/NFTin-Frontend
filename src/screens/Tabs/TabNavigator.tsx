@@ -7,7 +7,7 @@ const Tab = createBottomTabNavigator<RootStackParamList>();
 
 type Props = React.ComponentProps<typeof Tab.Navigator>;
 
-export const TabNavigator = ({ children, ...rest }: Props) => (
+const TabNavigator = ({ children, ...rest }: Props) => (
     <Tab.Navigator {...rest} tabBar={(props) => <TabBar {...props} />}>
         {children}
     </Tab.Navigator>
@@ -15,3 +15,5 @@ export const TabNavigator = ({ children, ...rest }: Props) => (
 
 TabNavigator.Screen = Tab.Screen;
 TabNavigator.Group = Tab.Group;
+
+export { TabNavigator };

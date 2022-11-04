@@ -1,10 +1,10 @@
-import { attach, createEffect, createEvent, forward, sample } from 'effector';
+import { attach, createEvent, sample } from 'effector';
+import { delay } from 'patronum';
 
-import { Viewer, viewerModel } from '@entities/viewer';
+import { viewerModel } from '@entities/viewer';
 import { linkLensProfileToAddressFx as linkLensProfileToAddressFxApi } from '@shared/api/nftinContract';
 import { POLYGON_CHAIN_ID } from '@shared/lib';
-import { Nullable, ProfileId } from '@shared/types';
-import { combineEvents, delay } from 'patronum';
+import { ProfileId } from '@shared/types';
 
 const linkLensProfileToAddressFx = attach({ effect: linkLensProfileToAddressFxApi });
 
@@ -23,7 +23,6 @@ export const killWalletSessonFx = attach({
 });
 
 export const linkLensProfileToAddressDone = linkLensProfileToAddressFx.doneData;
-export const linkLensProfileToAddressPending = linkLensProfileToAddressFx.pending;
 
 export const linkLensProfileToAddress = createEvent<ProfileId>();
 

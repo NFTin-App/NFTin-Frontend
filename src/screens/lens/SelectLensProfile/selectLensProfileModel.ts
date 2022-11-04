@@ -1,13 +1,13 @@
-import { attach, createEffect, createEvent, createStore, forward, restore, sample } from 'effector';
+import { attach, createEffect, createEvent, createStore, restore, sample } from 'effector';
 import { createGate } from 'effector-react';
+import { combineEvents, delay } from 'patronum';
 
-import { Viewer, viewerModel } from '@entities/viewer';
+import { viewerModel } from '@entities/viewer';
+import { authModel } from '@features/auth';
 import { getProfilesFx as getProfilesFxApi } from '@shared/api/lens';
-import { Navigation, Nullable } from '@shared/types';
+import { Navigation } from '@shared/types';
 
 import { ProfileItem } from './selectProfileTypes';
-import { authModel } from '@features/auth';
-import { combineEvents, delay } from 'patronum';
 
 const getProfilesFx = attach({
     effect: getProfilesFxApi,

@@ -1,6 +1,6 @@
-import { Connector } from '@shared/types';
 import { createEvent, restore } from 'effector';
-import { debug } from 'patronum';
+
+import { Connector } from '@shared/types';
 
 export const connectorInited = createEvent<Connector>();
 

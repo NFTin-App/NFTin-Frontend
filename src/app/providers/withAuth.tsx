@@ -3,8 +3,8 @@ import { sample } from 'effector';
 import { createGate, useGate } from 'effector-react';
 
 import { viewerModel } from '@entities/viewer';
-import { useWalletConnect } from '@walletconnect/react-native-dapp';
 import { Connector } from '@shared/types';
+import { useWalletConnect } from '@walletconnect/react-native-dapp';
 
 const appGate = createGate<Connector>('app');
 

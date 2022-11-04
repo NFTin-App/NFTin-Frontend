@@ -1,4 +1,5 @@
 import { ethers } from 'ethers';
+
 import Walletconnect from '@walletconnect/client';
 
 export type Connector = Walletconnect;

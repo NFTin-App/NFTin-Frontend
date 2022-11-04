@@ -1,12 +1,11 @@
-import { createEffect, createEvent, createStore, forward, sample } from 'effector';
+import { createEffect, createEvent, createStore, sample } from 'effector';
 import { ethers } from 'ethers';
 
-import { setContractFx } from '@shared/api/nftinContract';
 import { MUMBAI_RPC_URI, POLYGON_CHAIN_ID } from '@shared/lib';
 import { Connector, Nullable, Provider } from '@shared/types';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 
-import { $connector, connectorInited } from './connector';
+import { connectorInited } from './connector';
 
 export const providerInited = createEvent<Provider>();
 

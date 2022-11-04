@@ -2,8 +2,8 @@ import { useMemo } from 'react';
 import { Dimensions } from 'react-native';
 import { Path, Svg } from 'react-native-svg';
 
-import { BottomTabBar, BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { RouteProp, TabNavigationState } from '@react-navigation/native';
+import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+import { RouteProp } from '@react-navigation/native';
 import { assert } from '@shared/lib';
 import { RootStackParamList } from '@shared/types';
 import { DropShadow, useTheme, View } from '@shared/ui';

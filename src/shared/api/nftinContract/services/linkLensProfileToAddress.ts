@@ -1,4 +1,3 @@
-import { ContractTransaction } from 'ethers';
 import { attachContract } from '../connect';
 
 interface LinkLensProfileAddressParams {

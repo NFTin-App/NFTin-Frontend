@@ -1,5 +1,4 @@
 import React from 'react';
-import { LogBox } from 'react-native';
 
 import { Routing } from '@screens/routes';
 

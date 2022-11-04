@@ -2,7 +2,6 @@ import { ActivityFeed } from '@screens/ActivityFeed';
 import { Home } from '@screens/Home';
 import { Search } from '@screens/Search';
 import { ProfilePage } from '@screens/viewer/Profile';
-
 import { HomeIcon, MagnifyIcon, NewsIcon, UserIcon } from '@shared/ui';
 
 import { TabBarIcon } from './TabBarIcon';

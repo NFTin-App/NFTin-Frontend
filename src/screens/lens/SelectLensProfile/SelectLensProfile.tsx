@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { FlatList, ListRenderItem } from 'react-native';
-import { useEvent, useGate, useStore, useUnit } from 'effector-react';
-import { delay } from 'lodash';
+import { useEvent, useGate, useStore } from 'effector-react';
 
 import { authModel } from '@features/auth';
-import { Nullable, ScreenProps } from '@shared/types';
+import { ScreenProps } from '@shared/types';
 import { OutlineButton, Text, View } from '@shared/ui';
 
 import { ProfileItem } from './ProfileSelectItem';

@@ -1,6 +1,6 @@
-import { createEffect, createEvent, forward, sample } from 'effector';
+import { createEffect, createEvent, sample } from 'effector';
 import { createGate } from 'effector-react';
-import { combineEvents, condition, debug } from 'patronum';
+import { combineEvents, condition } from 'patronum';
 
 import { profileModel } from '@entities/profile';
 import { viewerModel } from '@entities/viewer';
