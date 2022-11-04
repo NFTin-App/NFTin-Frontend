@@ -13,4 +13,4 @@ sample({
     target: profileModel.getProfiles,
 });
 
-export const $isUnavailableProfiles = profileModel.$profiles.map((profiles) => !profiles.length);
+export const $isUnavailableProfiles = profileModel.$profiles.map((profiles) => !profiles?.length);

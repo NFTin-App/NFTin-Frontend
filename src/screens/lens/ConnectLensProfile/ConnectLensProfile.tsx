@@ -1,3 +1,4 @@
+import { Linking } from 'react-native';
 import { useGate, useStore } from 'effector-react';
 
 import { ScreenProps } from '@shared/types';
@@ -5,6 +6,8 @@ import { Button, GhostButton, OutlineButton, Text, Video, View } from '@shared/u
 
 import lensLogo from './assets/lens.mp4';
 import { $isUnavailableProfiles, pageGate } from './connectLensProfileModel';
+
+const lensUrl = 'https://www.lens.xyz/';
 
 export const ConnectLensProfile = ({ navigation }: ScreenProps<'ConnectLensProfile'>) => {
     useGate(pageGate);
@@ -16,23 +19,23 @@ export const ConnectLensProfile = ({ navigation }: ScreenProps<'ConnectLensProfi
             <View width='80%' alignItems='center' marginVertical={40}>
                 <Video
                     source={lensLogo}
-                    resizeMode='contain'
-                    repeat
                     width={123}
                     height={123}
                     borderRadius={100}
                     borderWidth={2}
+                    resizeMode='contain'
                     overflow='hidden'
                     alignSelf='center'
                     borderColor='#00501E'
+                    repeat
                 />
 
                 <Text
+                    marginTop={23}
+                    fontSize={20}
                     color='black'
                     fontWeight='500'
                     textAlign='center'
-                    marginTop={23}
-                    fontSize={20}
                 >
                     Are you alredy connectted to Lens?
                 </Text>
@@ -65,7 +68,12 @@ export const ConnectLensProfile = ({ navigation }: ScreenProps<'ConnectLensProfi
                     />
                 </View>
 
-                <GhostButton title='Сreate the Lens Profile NFT' />
+                <GhostButton
+                    onPress={() => {
+                        Linking.openURL(lensUrl);
+                    }}
+                    title='Сreate the Lens Profile NFT'
+                />
             </View>
         </View>
     );

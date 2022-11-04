@@ -6,7 +6,9 @@ import { useViewStyle, ViewStyleProps } from '@shared/lib';
 
 type Props = VideoProperties & ViewStyleProps;
 
-export const Video = memo(({ style, ...rest }: Props) => {
+export const Video = memo(({ style, resizeMode, ...rest }: Props) => {
     const viewStyle = useViewStyle({ ...rest });
-    return <RNVideo style={StyleSheet.compose(viewStyle, style)} {...rest} />;
+    return (
+        <RNVideo resizeMode={resizeMode} style={StyleSheet.compose(viewStyle, style)} {...rest} />
+    );
 });
