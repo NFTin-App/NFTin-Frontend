@@ -10,6 +10,7 @@ import { RootStackParamList } from '@shared/types';
 import { ProfilePage } from '../viewer/Profile';
 
 import { generateDefaultScreenOptions } from './lib';
+import { Tabs } from '@screens/Tabs';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -24,7 +25,6 @@ export const Routing = () => {
             initialRouteName='Loading'
         >
             {!isProvider && <Stack.Screen name='ConnectWallet' component={ConnectWalletPage} />}
-            <Stack.Screen name='Profile' component={ProfilePage} />
             <Stack.Screen name='ConnectLensProfile' component={ConnectLensProfile} />
             <Stack.Screen
                 options={generateDefaultScreenOptions({ title: 'Lens Profile' })}
@@ -32,6 +32,7 @@ export const Routing = () => {
                 component={SelectLensProfile}
             />
             <Stack.Screen name='Loading' component={Loading} />
+            <Stack.Screen name={'Tabs'} component={Tabs} />
         </Stack.Navigator>
     );
 };

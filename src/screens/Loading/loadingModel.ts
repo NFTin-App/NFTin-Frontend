@@ -38,5 +38,5 @@ sample({
         events: [redirectToProfile, appInited],
     }),
     source: pageGate.state,
-    target: navigate('Profile'),
+    target: navigate('Tabs'),
 });

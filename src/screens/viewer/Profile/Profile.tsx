@@ -20,7 +20,7 @@ export const ProfilePage = memo(({ navigation }: ScreenProps<'Profile'>) => {
     }
 
     return (
-        <View alignItems='center'>
+        <View flex={1} alignItems='center'>
             <View>
                 <Text color='gray100' fontSize={12}>
                     @{profile?.handle}

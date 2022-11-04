@@ -59,6 +59,8 @@ export const RocketButton = memo(({ onPress, ...rest }: Props) => {
                     <View justifyContent='center' alignItems='center'>
                         <Svg viewBox='0 0 95 62' width={95} height={62}>
                             <Defs>
+                                {/* // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                // @ts-expect-error */}
                                 <LinearGradient id={GRADIENT_NAME} x1='0' y1='0' x2='100' y2='100'>
                                     <Stop stopColor={theme.palette.primary100} offset='0%' />
                                     <Stop stopColor={theme.palette.accent100} offset='45%' />
