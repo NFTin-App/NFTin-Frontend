@@ -2,8 +2,8 @@ import { useMemo } from 'react';
 import { Dimensions } from 'react-native';
 import { Path, Svg } from 'react-native-svg';
 
-import { BottomTabBar } from '@react-navigation/bottom-tabs';
-import { TabNavigationState } from '@react-navigation/native';
+import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+import { RouteProp } from '@react-navigation/native';
 import { assert } from '@shared/lib';
 import { RootStackParamList } from '@shared/types';
 import { DropShadow, useTheme, View } from '@shared/ui';
@@ -38,11 +38,7 @@ const tabbarShape = `
     L 0 ${TABBAR_HEIGHT}
     `;
 
-type Props = Omit<React.ComponentProps<typeof BottomTabBar>, 'state'> & {
-    state: TabNavigationState<RootStackParamList>;
-};
-
-export const TabBar = ({ state, descriptors }: Props) => {
+export const TabBar = ({ state, descriptors }: BottomTabBarProps) => {
     assert(state.routes.length === 4);
 
     const { theme } = useTheme();
@@ -51,10 +47,11 @@ export const TabBar = ({ state, descriptors }: Props) => {
         () =>
             state.routes.map((route, index) => {
                 const { options } = descriptors[route.key];
+
                 return (
                     <TabBarButton
                         key={route.key}
-                        route={route}
+                        route={route as RouteProp<RootStackParamList, keyof RootStackParamList>}
                         focused={state.index === index}
                         {...options}
                     />

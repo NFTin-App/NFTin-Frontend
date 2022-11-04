@@ -103,8 +103,6 @@ const baseRules = {
         },
     ],
     'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
-    '@typescript-eslint/no-namespace': ['off'],
-    '@typescript-eslint/consistent-type-definitions': ['off'],
 };
 
 let extendRules = {};

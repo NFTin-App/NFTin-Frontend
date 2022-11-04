@@ -7,4 +7,5 @@ export * from './Text';
 export * from './ThemeProvider';
 export * from './TouchableOpacity';
 export * from './TouchableWithoutFeedback';
+export * from './Video';
 export * from './View';

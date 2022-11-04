@@ -1,7 +1,7 @@
 import { createEvent, restore } from 'effector';
 
-import Walletconnect from '@walletconnect/client';
+import { Connector } from '@shared/types';
 
-export const initConnector = createEvent<Walletconnect>();
+export const connectorInited = createEvent<Connector>();
 
-export const $connector = restore(initConnector, null);
+export const $connector = restore(connectorInited, null);
