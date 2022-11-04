@@ -1,8 +1,8 @@
-import { profileModel } from '@entities/profile';
-import { viewerModel } from '@entities/viewer';
 import { sample } from 'effector';
 import { createGate } from 'effector-react';
-import { combineEvents } from 'patronum';
+
+import { profileModel } from '@entities/profile';
+import { viewerModel } from '@entities/viewer';
 
 export const pageGate = createGate('connectLensProfile');
 

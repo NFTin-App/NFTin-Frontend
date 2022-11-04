@@ -1,13 +1,11 @@
-import { attach, createEffect, createEvent, createStore, restore, sample } from 'effector';
+import { createEffect, createEvent, restore, sample } from 'effector';
 import { createGate } from 'effector-react';
-import { combineEvents, delay } from 'patronum';
-
-import { viewerModel } from '@entities/viewer';
-import { authModel } from '@features/auth';
-import { getProfilesFx as getProfilesFxApi } from '@shared/api/lens';
-import { Navigation } from '@shared/types';
+import { combineEvents } from 'patronum';
 
 import { profileModel } from '@entities/profile';
+import { viewerModel } from '@entities/viewer';
+import { authModel } from '@features/auth';
+import { Navigation } from '@shared/types';
 
 type ProfileNavigation = Navigation<'SelectLensProfile'>;
 
@@ -25,12 +23,8 @@ sample({
 });
 
 sample({
-    // TODO обработка завершение контракта
     clock: combineEvents({
-        events: [
-            delay({ timeout: 30000, source: authModel.linkLensProfileToAddressDone }),
-            viewerModel.getViewerProfileIdFinished,
-        ],
+        events: [authModel.linkLensProfileToAddressDone, viewerModel.getViewerProfileIdFinished],
     }),
     source: pageGate.state,
     target: createEffect((navigation: ProfileNavigation) => {

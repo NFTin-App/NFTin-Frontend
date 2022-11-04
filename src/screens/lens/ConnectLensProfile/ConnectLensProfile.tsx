@@ -1,14 +1,14 @@
+import { useGate, useStore } from 'effector-react';
+
 import { ScreenProps } from '@shared/types';
 import { Button, GhostButton, LensIcon, OutlineButton, Text, View } from '@shared/ui';
-import { useGate, useStore } from 'effector-react';
+
 import { $isUnavailableProfiles, pageGate } from './connectLensProfileModel';
 
 export const ConnectLensProfile = ({ navigation }: ScreenProps<'ConnectLensProfile'>) => {
     useGate(pageGate);
 
     const isUnavailableProfiles = useStore($isUnavailableProfiles);
-
-    const buttonColor = isUnavailableProfiles ? 'gray200' : 'purple';
 
     return (
         <View flex={2} paddingHorizontal={24} alignItems='center' justifyContent='space-around'>
@@ -39,11 +39,11 @@ export const ConnectLensProfile = ({ navigation }: ScreenProps<'ConnectLensProfi
             {/* //  TODO подключить либу или сделать самостоятельно реализацию <Stack></Stack> компонента */}
             <View width='100%'>
                 <Button
-                    textAttirbutes={{ fontSize: 16, fontWeight: '600', color: buttonColor }}
+                    textAttirbutes={{ fontSize: 16, fontWeight: '600' }}
                     title='Yes, connect Lens profile'
                     width='100%'
                     disabled={isUnavailableProfiles}
-                    onPress={() => navigation.push('SelectLensProfile')}
+                    onPress={() => navigation.navigate('SelectLensProfile')}
                 />
                 <View marginTop={5}>
                     <OutlineButton

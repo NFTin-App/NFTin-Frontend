@@ -1,6 +1,8 @@
-import { Address, Nullable } from '@shared/types';
-import { attach, createEvent, createStore, restore, sample } from 'effector';
+import { attach, createEvent, createStore, sample } from 'effector';
+
 import { getProfilesFx as getProfilesFxApi } from '@shared/api/lens';
+import { Address } from '@shared/types';
+
 import { ProfileItem } from '../profileTypes';
 
 const getProfilesFx = attach({

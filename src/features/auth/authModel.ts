@@ -1,5 +1,4 @@
 import { attach, createEvent, sample } from 'effector';
-import { delay } from 'patronum';
 
 import { viewerModel } from '@entities/viewer';
 import { linkLensProfileToAddressFx as linkLensProfileToAddressFxApi } from '@shared/api/nftinContract';
@@ -32,9 +31,7 @@ sample({
     target: linkLensProfileToAddressFx,
 });
 
-// TODO обработка завершение контракта
 sample({
-    clock: delay({ timeout: 30000, source: linkLensProfileToAddressFx.doneData }),
     source: linkLensProfileToAddressFx.doneData,
     target: viewerModel.getViewerProfileId,
 });

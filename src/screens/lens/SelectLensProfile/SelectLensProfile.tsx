@@ -2,14 +2,13 @@ import { useState } from 'react';
 import { FlatList, ListRenderItem } from 'react-native';
 import { useEvent, useGate, useStore, useUnit } from 'effector-react';
 
+import { ProfileItem as TProfileItem, profileModel } from '@entities/profile';
 import { authModel } from '@features/auth';
 import { ScreenProps } from '@shared/types';
 import { OutlineButton, Text, View } from '@shared/ui';
 
 import { ProfileItem } from './ProfileSelectItem';
 import { $profileId, pageGate, updateProfileId } from './selectLensProfileModel';
-
-import { ProfileItem as TProfileItem, profileModel } from '@entities/profile';
 
 export const SelectLensProfile = ({ navigation }: ScreenProps<'SelectLensProfile'>) => {
     useGate(pageGate, navigation);

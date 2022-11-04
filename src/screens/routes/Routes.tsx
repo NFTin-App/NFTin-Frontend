@@ -5,12 +5,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ConnectWalletPage } from '@screens/ConnectWallet';
 import { ConnectLensProfile, SelectLensProfile } from '@screens/lens';
 import { Loading } from '@screens/Loading';
+import { Tabs } from '@screens/Tabs';
 import { RootStackParamList } from '@shared/types';
 
-import { ProfilePage } from '../viewer/Profile';
-
 import { generateDefaultScreenOptions } from './lib';
-import { Tabs } from '@screens/Tabs';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -32,7 +30,7 @@ export const Routing = () => {
                 component={SelectLensProfile}
             />
             <Stack.Screen name='Loading' component={Loading} />
-            <Stack.Screen name={'Tabs'} component={Tabs} />
+            <Stack.Screen name='Tabs' component={Tabs} />
         </Stack.Navigator>
     );
 };
