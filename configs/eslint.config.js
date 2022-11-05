@@ -26,6 +26,10 @@ const strictRules = {
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/no-use-before-define': 'error',
     '@typescript-eslint/no-redeclare': 'error',
+    "no-restricted-syntax": ["error", {
+        "selector": "ImportDeclaration[source.value='patronum'] ImportSpecifier[imported.name='debug']",
+        "message": "'Don't use debug method'"
+    }]
 };
 
 const baseRules = {
