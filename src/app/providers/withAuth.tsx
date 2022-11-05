@@ -10,6 +10,7 @@ const appGate = createGate<Connector>('app');
 
 sample({
     clock: appGate.state,
+    filter: (connector) => connector.connected,
     target: viewerModel.connectorInited,
 });
 

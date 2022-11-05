@@ -2,14 +2,12 @@ import { createEffect, createEvent, restore, sample } from 'effector';
 import { createGate } from 'effector-react';
 import { combineEvents } from 'patronum';
 
+import { navigationModel } from '@entities/navigation';
 import { profileModel } from '@entities/profile';
 import { viewerModel } from '@entities/viewer';
 import { authModel } from '@features/auth';
-import { Navigation } from '@shared/types';
 
-type ProfileNavigation = Navigation<'SelectLensProfile'>;
-
-export const pageGate = createGate<ProfileNavigation>('selectLensProfile');
+export const pageGate = createGate('selectLensProfile');
 
 export const updateProfileId = createEvent<string>();
 
@@ -22,12 +20,13 @@ sample({
     target: profileModel.getProfiles,
 });
 
+const lensProfileLinked = combineEvents({
+    events: [authModel.linkLensProfileToAddressDone, viewerModel.getViewerProfileIdFinished],
+});
+
 sample({
-    clock: combineEvents({
-        events: [authModel.linkLensProfileToAddressDone, viewerModel.getViewerProfileIdFinished],
-    }),
-    source: pageGate.state,
-    target: createEffect((navigation: ProfileNavigation) => {
-        navigation.navigate('Profile');
+    clock: lensProfileLinked,
+    target: createEffect(() => {
+        navigationModel.resetNavigateFx('Profile');
     }),
 });

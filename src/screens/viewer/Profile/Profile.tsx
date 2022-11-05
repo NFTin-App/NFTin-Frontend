@@ -1,17 +1,18 @@
 import { memo } from 'react';
-import { useGate, useStore } from 'effector-react';
+import { useEvent, useGate, useStore } from 'effector-react';
 
+import { navigationModel } from '@entities/navigation';
 import { profileModel } from '@entities/profile';
 import { SignOutButton } from '@features/auth';
-import { ScreenProps } from '@shared/types';
 import { Button, Text, View } from '@shared/ui';
 
 import { ProfileLoading } from './ProfileLoading';
 import { pageGate } from './profileModel';
 
-export const ProfilePage = memo(({ navigation }: ScreenProps<'Profile'>) => {
-    useGate(pageGate, navigation);
+export const ProfilePage = memo(() => {
+    useGate(pageGate);
 
+    const navigate = useEvent(navigationModel.resetNavigateFx);
     const profile = useStore(profileModel.$profile);
 
     // ? поменять на viewerModel.getViewerProfileIdFx.pending?
@@ -28,7 +29,7 @@ export const ProfilePage = memo(({ navigation }: ScreenProps<'Profile'>) => {
                 <Button
                     title='to selectProfile'
                     onPress={() => {
-                        navigation.navigate('ConnectLensProfile');
+                        navigate('ConnectLensProfile');
                     }}
                 />
                 <SignOutButton />
