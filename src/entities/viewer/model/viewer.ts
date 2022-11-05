@@ -1,5 +1,5 @@
 import { attach, createEffect, createEvent, createStore, sample } from 'effector';
-import { combineEvents, debug } from 'patronum';
+import { combineEvents } from 'patronum';
 
 import { getProfileIdFx as getProfileIdFxApi } from '@shared/api/nftinContract';
 import { Connector, Nullable } from '@shared/types';
@@ -65,5 +65,3 @@ sample({
     source: $viewer,
     target: viewerInited,
 });
-
-debug(viewerInited);
