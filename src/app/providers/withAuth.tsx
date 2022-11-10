@@ -1,22 +1,50 @@
 import { FC } from 'react';
-import { sample } from 'effector';
+import { createEvent, forward, sample } from 'effector';
 import { createGate, useGate } from 'effector-react';
+import { combineEvents, condition } from 'patronum';
 
 import { viewerModel } from '@entities/viewer';
 import { Connector } from '@shared/types';
-import { useWalletConnect } from '@walletconnect/react-native-dapp';
 
-const appGate = createGate<Connector>('app');
+const appGate = createGate('viewer');
+
+const viewerInitReady = createEvent();
+
+const updateViewerConnectorData = createEvent<Connector>();
+
+forward({
+    from: appGate.open,
+    to: viewerModel.initGuestFx,
+});
+
+condition({
+    source: viewerModel.connectorInited,
+    if: (connector) => connector.connected,
+    then: updateViewerConnectorData,
+    else: viewerModel.viewerInited,
+});
 
 sample({
-    clock: appGate.state,
-    filter: (connector) => connector.connected,
-    target: viewerModel.connectorInited,
+    clock: updateViewerConnectorData,
+    fn: (connector) => ({
+        address: connector.accounts[0],
+        isConnected: connector.connected,
+        profileId: null,
+    }),
+    target: [viewerModel.$viewer, viewerInitReady],
+});
+
+condition({
+    source: combineEvents({
+        events: [viewerModel.signerInited, viewerInitReady],
+    }),
+    if: viewerModel.$isGuest.getState,
+    then: viewerModel.viewerInited,
+    else: viewerModel.getViewerProfileId,
 });
 
 export const withAuth = (Component: FC) => () => {
-    const connector = useWalletConnect();
-    useGate(appGate, connector);
+    useGate(appGate);
 
     return <Component />;
 };

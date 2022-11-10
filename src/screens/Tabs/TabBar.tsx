@@ -5,7 +5,7 @@ import { Path, Svg } from 'react-native-svg';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { RouteProp } from '@react-navigation/native';
 import { assert } from '@shared/lib';
-import { RootStackParamList } from '@shared/types';
+import { RootTabParamList } from '@shared/types';
 import { DropShadow, useTheme, View } from '@shared/ui';
 
 import { RocketButton } from './RocketButton';
@@ -51,7 +51,7 @@ export const TabBar = ({ state, descriptors }: BottomTabBarProps) => {
                 return (
                     <TabBarButton
                         key={route.key}
-                        route={route as RouteProp<RootStackParamList, keyof RootStackParamList>}
+                        route={route as RouteProp<RootTabParamList, keyof RootTabParamList>}
                         focused={state.index === index}
                         {...options}
                     />

@@ -7,7 +7,7 @@ import { RootStackParamList } from '@shared/types';
 
 export const withNavigation = (Component: FC) => () => {
     const navigationRef = useNavigationContainerRef<RootStackParamList>();
-    const initNavigation = useEvent(navigationModel.initedNavigation);
+    const initNavigation = useEvent(navigationModel.navigationInited);
 
     const onNavigationInit = useCallback(() => {
         initNavigation(navigationRef);

@@ -1,15 +1,16 @@
 import { Linking } from 'react-native';
 import { useGate, useStore } from 'effector-react';
 
-import { ScreenProps } from '@shared/types';
-import { Button, GhostButton, OutlineButton, Text, Video, View } from '@shared/ui';
+import { LoginAsGuestButton } from '@features/auth';
+import lensLogo from '@shared/assets/media/lens.mp4';
+import { RootStackScreenProps } from '@shared/types';
+import { Button, GhostButton, Text, Video, View } from '@shared/ui';
 
-import lensLogo from './assets/lens.mp4';
 import { $isUnavailableProfiles, pageGate } from './connectLensProfileModel';
 
 const lensUrl = 'https://www.lens.xyz/';
 
-export const ConnectLensProfile = ({ navigation }: ScreenProps<'ConnectLensProfile'>) => {
+export const ConnectLensProfile = ({ navigation }: RootStackScreenProps<'ConnectLensProfile'>) => {
     useGate(pageGate);
 
     const isUnavailableProfiles = useStore($isUnavailableProfiles);
@@ -60,19 +61,16 @@ export const ConnectLensProfile = ({ navigation }: ScreenProps<'ConnectLensProfi
                     disabled={isUnavailableProfiles}
                     onPress={() => navigation.navigate('SelectLensProfile')}
                 />
+
                 <View marginTop={5}>
-                    <OutlineButton
-                        textAttirbutes={{ fontSize: 16, fontWeight: '600', color: 'purple' }}
-                        title='No, continue to NFTin as guest'
-                        width='100%'
-                    />
+                    <LoginAsGuestButton title='No, continue as guest' />
                 </View>
 
                 <GhostButton
                     onPress={() => {
                         Linking.openURL(lensUrl);
                     }}
-                    title='Сreate the Lens Profile NFT'
+                    title='Сreate the Lens Profile'
                 />
             </View>
         </View>

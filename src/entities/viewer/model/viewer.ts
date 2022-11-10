@@ -1,51 +1,26 @@
-import { attach, createEffect, createEvent, createStore, sample } from 'effector';
+import { attach, createEvent, createStore, sample } from 'effector';
 import { combineEvents } from 'patronum';
 
 import { getProfileIdFx as getProfileIdFxApi } from '@shared/api/nftinContract';
-import { Connector, Nullable } from '@shared/types';
+import { Nullable } from '@shared/types';
 
+import { isValidProfile } from '../lib';
 import { Viewer } from '../viewerTypes';
-
-import { connectorInited } from './connector';
-import { signerInited } from './signer';
 
 const getViewerProfileIdFx = attach({ effect: getProfileIdFxApi });
 
+export const resetViewer = createEvent();
 export const viewerInited = createEvent();
 
-const initViewerFx = createEffect((connector: Connector) => ({
-    address: connector.accounts[0],
-    isConnected: connector.connected,
-    profileId: null,
-}));
-
-export const $viewer = createStore<Nullable<Viewer>>(null);
-export const $isConnected = $viewer.map((viewer) => !!viewer?.isConnected);
-
-sample({
-    clock: connectorInited,
-    target: initViewerFx,
-});
-
-sample({
-    clock: initViewerFx.doneData,
-    target: $viewer,
-});
+export const $viewer = createStore<Nullable<Viewer>>(null).reset(resetViewer);
+export const $isLensConnected = $viewer.map((viewer) => isValidProfile(viewer?.profileId ?? null));
 
 export const getViewerProfileId = createEvent();
-
 export const getViewerProfileIdFinished = getViewerProfileIdFx.doneData;
+export const $isGetViewerProfileIdPending = getViewerProfileIdFx.pending;
 
 sample({
     clock: getViewerProfileId,
-    source: $viewer,
-    filter: Boolean,
-    fn: ({ address }) => ({ address }),
-    target: getViewerProfileIdFx,
-});
-
-sample({
-    clock: signerInited,
     source: $viewer,
     filter: Boolean,
     fn: ({ address }) => ({ address }),
@@ -63,5 +38,6 @@ sample({
 sample({
     clock: combineEvents({ events: [getViewerProfileIdFx.doneData] }),
     source: $viewer,
+    filter: Boolean,
     target: viewerInited,
 });
