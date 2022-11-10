@@ -107,6 +107,7 @@ const baseRules = {
         },
     ],
     'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
+    '@typescript-eslint/no-invalid-void-type': 'off'
 };
 
 let extendRules = {};
