@@ -10,7 +10,7 @@ export const SignOut = () => {
     return (
         <OutlineButton
             title='Sign Out'
-            textAttirbutes={{ color: 'primary' }}
+            textAttributes={{ color: 'primary' }}
             onPress={killWalletSession}
         />
     );

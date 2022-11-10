@@ -30,7 +30,7 @@ condition({
 
 sample({
     clock: redirectToConnect,
-    target: navigationModel.createResetNavigateFx('ConnectWallet'),
+    target: navigationModel.createResetNavigateFx('Start'),
 });
 
 const redirectToHome = createEvent();

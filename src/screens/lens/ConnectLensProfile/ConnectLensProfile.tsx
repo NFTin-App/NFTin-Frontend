@@ -55,7 +55,7 @@ export const ConnectLensProfile = ({ navigation }: RootStackScreenProps<'Connect
             {/* //  TODO подключить либу или сделать самостоятельно реализацию <Stack></Stack> компонента */}
             <View width='100%'>
                 <Button
-                    textAttirbutes={{ fontSize: 16, fontWeight: '600' }}
+                    textAttributes={{ fontSize: 16, fontWeight: '600' }}
                     title='Yes, connect Lens profile'
                     width='100%'
                     disabled={isUnavailableProfiles}

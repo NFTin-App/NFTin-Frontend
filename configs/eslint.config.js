@@ -26,10 +26,14 @@ const strictRules = {
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/no-use-before-define': 'error',
     '@typescript-eslint/no-redeclare': 'error',
-    "no-restricted-syntax": ["error", {
-        "selector": "ImportDeclaration[source.value='patronum'] ImportSpecifier[imported.name='debug']",
-        "message": "'Don't use debug method'"
-    }]
+    'no-restricted-syntax': [
+        'error',
+        {
+            selector:
+                "ImportDeclaration[source.value='patronum'] ImportSpecifier[imported.name='debug']",
+            message: "'Don't use debug method'",
+        },
+    ],
 };
 
 const baseRules = {
@@ -107,7 +111,7 @@ const baseRules = {
         },
     ],
     'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'never' }],
-    '@typescript-eslint/no-invalid-void-type': 'off'
+    '@typescript-eslint/no-invalid-void-type': 'off',
 };
 
 let extendRules = {};

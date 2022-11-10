@@ -5,7 +5,7 @@ import { TouchableOpacity } from '../TouchableOpacity';
 
 type Props = Omit<React.ComponentProps<typeof TouchableOpacity>, 'children'> & {
     title: string;
-    textAttirbutes?: React.ComponentProps<typeof Text>;
+    textAttributes?: React.ComponentProps<typeof Text>;
 };
 
 const getStyles = (disabled: boolean | undefined) => {
@@ -26,7 +26,7 @@ const getStyles = (disabled: boolean | undefined) => {
     };
 };
 
-export const Button = memo(({ title, textAttirbutes, disabled, ...rest }: Props) => {
+export const Button = memo(({ title, disabled, textAttributes, ...rest }: Props) => {
     const { bgColor, borderColor, borderWidth, color } = getStyles(disabled);
 
     return (
@@ -41,7 +41,7 @@ export const Button = memo(({ title, textAttirbutes, disabled, ...rest }: Props)
             borderRadius={18}
             {...rest}
         >
-            <Text color={color} fontSize={16} fontWeight='500' {...textAttirbutes}>
+            <Text color={color} fontSize={16} fontWeight='500' {...textAttributes}>
                 {title}
             </Text>
         </TouchableOpacity>

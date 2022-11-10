@@ -2,859 +2,859 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import { Contract, Signer, utils } from "ethers";
-import type { Provider } from "@ethersproject/providers";
-import type { Nftin, NftinInterface } from "../Nftin";
+import { Contract, Signer, utils } from 'ethers';
+import type { Provider } from '@ethersproject/providers';
+import type { Nftin, NftinInterface } from '../Nftin';
 
 const _abi = [
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "_profileAddress",
-        type: "address",
-      },
-      {
-        components: [
-          {
-            internalType: "uint256",
-            name: "profileId",
-            type: "uint256",
-          },
-          {
-            internalType: "string",
-            name: "contentURI",
-            type: "string",
-          },
-          {
-            internalType: "uint256",
-            name: "profileIdPointed",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "pubIdPointed",
-            type: "uint256",
-          },
-          {
-            internalType: "bytes",
-            name: "referenceModuleData",
-            type: "bytes",
-          },
-          {
-            internalType: "address",
-            name: "collectModule",
-            type: "address",
-          },
-          {
-            internalType: "bytes",
-            name: "collectModuleInitData",
-            type: "bytes",
-          },
-          {
-            internalType: "address",
-            name: "referenceModule",
-            type: "address",
-          },
-          {
-            internalType: "bytes",
-            name: "referenceModuleInitData",
-            type: "bytes",
-          },
+    {
+        anonymous: false,
+        inputs: [
+            {
+                indexed: true,
+                internalType: 'address',
+                name: '_profileAddress',
+                type: 'address',
+            },
+            {
+                components: [
+                    {
+                        internalType: 'uint256',
+                        name: 'profileId',
+                        type: 'uint256',
+                    },
+                    {
+                        internalType: 'string',
+                        name: 'contentURI',
+                        type: 'string',
+                    },
+                    {
+                        internalType: 'uint256',
+                        name: 'profileIdPointed',
+                        type: 'uint256',
+                    },
+                    {
+                        internalType: 'uint256',
+                        name: 'pubIdPointed',
+                        type: 'uint256',
+                    },
+                    {
+                        internalType: 'bytes',
+                        name: 'referenceModuleData',
+                        type: 'bytes',
+                    },
+                    {
+                        internalType: 'address',
+                        name: 'collectModule',
+                        type: 'address',
+                    },
+                    {
+                        internalType: 'bytes',
+                        name: 'collectModuleInitData',
+                        type: 'bytes',
+                    },
+                    {
+                        internalType: 'address',
+                        name: 'referenceModule',
+                        type: 'address',
+                    },
+                    {
+                        internalType: 'bytes',
+                        name: 'referenceModuleInitData',
+                        type: 'bytes',
+                    },
+                ],
+                indexed: true,
+                internalType: 'struct DataTypes.CommentData',
+                name: '_data',
+                type: 'tuple',
+            },
         ],
-        indexed: true,
-        internalType: "struct DataTypes.CommentData",
-        name: "_data",
-        type: "tuple",
-      },
-    ],
-    name: "commented",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "_profileAddress",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "uint256",
-        name: "_profileIdPointed",
-        type: "uint256",
-      },
-      {
-        indexed: true,
-        internalType: "uint256",
-        name: "_pubIdPointed",
-        type: "uint256",
-      },
-    ],
-    name: "liked",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "_profileAddress",
-        type: "address",
-      },
-      {
-        components: [
-          {
-            internalType: "uint256",
-            name: "profileId",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "profileIdPointed",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "pubIdPointed",
-            type: "uint256",
-          },
-          {
-            internalType: "bytes",
-            name: "referenceModuleData",
-            type: "bytes",
-          },
-          {
-            internalType: "address",
-            name: "referenceModule",
-            type: "address",
-          },
-          {
-            internalType: "bytes",
-            name: "referenceModuleInitData",
-            type: "bytes",
-          },
+        name: 'commented',
+        type: 'event',
+    },
+    {
+        anonymous: false,
+        inputs: [
+            {
+                indexed: true,
+                internalType: 'address',
+                name: '_profileAddress',
+                type: 'address',
+            },
+            {
+                indexed: true,
+                internalType: 'uint256',
+                name: '_profileIdPointed',
+                type: 'uint256',
+            },
+            {
+                indexed: true,
+                internalType: 'uint256',
+                name: '_pubIdPointed',
+                type: 'uint256',
+            },
         ],
-        indexed: true,
-        internalType: "struct DataTypes.MirrorData",
-        name: "_data",
-        type: "tuple",
-      },
-    ],
-    name: "mirrored",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "_profileAddress",
-        type: "address",
-      },
-      {
-        components: [
-          {
-            internalType: "uint256",
-            name: "profileId",
-            type: "uint256",
-          },
-          {
-            internalType: "string",
-            name: "contentURI",
-            type: "string",
-          },
-          {
-            internalType: "address",
-            name: "collectModule",
-            type: "address",
-          },
-          {
-            internalType: "bytes",
-            name: "collectModuleInitData",
-            type: "bytes",
-          },
-          {
-            internalType: "address",
-            name: "referenceModule",
-            type: "address",
-          },
-          {
-            internalType: "bytes",
-            name: "referenceModuleInitData",
-            type: "bytes",
-          },
+        name: 'liked',
+        type: 'event',
+    },
+    {
+        anonymous: false,
+        inputs: [
+            {
+                indexed: true,
+                internalType: 'address',
+                name: '_profileAddress',
+                type: 'address',
+            },
+            {
+                components: [
+                    {
+                        internalType: 'uint256',
+                        name: 'profileId',
+                        type: 'uint256',
+                    },
+                    {
+                        internalType: 'uint256',
+                        name: 'profileIdPointed',
+                        type: 'uint256',
+                    },
+                    {
+                        internalType: 'uint256',
+                        name: 'pubIdPointed',
+                        type: 'uint256',
+                    },
+                    {
+                        internalType: 'bytes',
+                        name: 'referenceModuleData',
+                        type: 'bytes',
+                    },
+                    {
+                        internalType: 'address',
+                        name: 'referenceModule',
+                        type: 'address',
+                    },
+                    {
+                        internalType: 'bytes',
+                        name: 'referenceModuleInitData',
+                        type: 'bytes',
+                    },
+                ],
+                indexed: true,
+                internalType: 'struct DataTypes.MirrorData',
+                name: '_data',
+                type: 'tuple',
+            },
         ],
-        indexed: true,
-        internalType: "struct DataTypes.PostData",
-        name: "_data",
-        type: "tuple",
-      },
-    ],
-    name: "posted",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "_profileAddress",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "uint256",
-        name: "_profileId",
-        type: "uint256",
-      },
-    ],
-    name: "profileOnboarded",
-    type: "event",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "profileId",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "pubId",
-        type: "uint256",
-      },
-      {
-        internalType: "bytes",
-        name: "data",
-        type: "bytes",
-      },
-    ],
-    name: "collect",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "collections",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "comments",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "profileId",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "profileIdPointed",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "pubId",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "pubIdPointed",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_profileId",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_postId",
-        type: "uint256",
-      },
-    ],
-    name: "getComments",
-    outputs: [
-      {
-        components: [
-          {
-            internalType: "uint256",
-            name: "profileId",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "profileIdPointed",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "pubId",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "pubIdPointed",
-            type: "uint256",
-          },
+        name: 'mirrored',
+        type: 'event',
+    },
+    {
+        anonymous: false,
+        inputs: [
+            {
+                indexed: true,
+                internalType: 'address',
+                name: '_profileAddress',
+                type: 'address',
+            },
+            {
+                components: [
+                    {
+                        internalType: 'uint256',
+                        name: 'profileId',
+                        type: 'uint256',
+                    },
+                    {
+                        internalType: 'string',
+                        name: 'contentURI',
+                        type: 'string',
+                    },
+                    {
+                        internalType: 'address',
+                        name: 'collectModule',
+                        type: 'address',
+                    },
+                    {
+                        internalType: 'bytes',
+                        name: 'collectModuleInitData',
+                        type: 'bytes',
+                    },
+                    {
+                        internalType: 'address',
+                        name: 'referenceModule',
+                        type: 'address',
+                    },
+                    {
+                        internalType: 'bytes',
+                        name: 'referenceModuleInitData',
+                        type: 'bytes',
+                    },
+                ],
+                indexed: true,
+                internalType: 'struct DataTypes.PostData',
+                name: '_data',
+                type: 'tuple',
+            },
         ],
-        internalType: "struct NFTinStorage.Comments[]",
-        name: "",
-        type: "tuple[]",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_profileId",
-        type: "uint256",
-      },
-    ],
-    name: "getMirrors",
-    outputs: [
-      {
-        components: [
-          {
-            internalType: "uint256",
-            name: "mirrorId",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "profileIdPointed",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "pubIdPointed",
-            type: "uint256",
-          },
+        name: 'posted',
+        type: 'event',
+    },
+    {
+        anonymous: false,
+        inputs: [
+            {
+                indexed: true,
+                internalType: 'address',
+                name: '_profileAddress',
+                type: 'address',
+            },
+            {
+                indexed: true,
+                internalType: 'uint256',
+                name: '_profileId',
+                type: 'uint256',
+            },
         ],
-        internalType: "struct NFTinStorage.Mirrors[]",
-        name: "",
-        type: "tuple[]",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_profileId",
-        type: "uint256",
-      },
-    ],
-    name: "getPostList",
-    outputs: [
-      {
-        internalType: "uint256[]",
-        name: "",
-        type: "uint256[]",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_profileAddress",
-        type: "address",
-      },
-    ],
-    name: "getProfile",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "lensAddress",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "likes",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "likesCount",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "mirrors",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "mirrorId",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "profileIdPointed",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "pubIdPointed",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_profileId",
-        type: "uint256",
-      },
-    ],
-    name: "onboardNewProfile",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        components: [
-          {
-            internalType: "uint256",
-            name: "profileId",
-            type: "uint256",
-          },
-          {
-            internalType: "string",
-            name: "contentURI",
-            type: "string",
-          },
-          {
-            internalType: "address",
-            name: "collectModule",
-            type: "address",
-          },
-          {
-            internalType: "bytes",
-            name: "collectModuleInitData",
-            type: "bytes",
-          },
-          {
-            internalType: "address",
-            name: "referenceModule",
-            type: "address",
-          },
-          {
-            internalType: "bytes",
-            name: "referenceModuleInitData",
-            type: "bytes",
-          },
+        name: 'profileOnboarded',
+        type: 'event',
+    },
+    {
+        inputs: [
+            {
+                internalType: 'uint256',
+                name: 'profileId',
+                type: 'uint256',
+            },
+            {
+                internalType: 'uint256',
+                name: 'pubId',
+                type: 'uint256',
+            },
+            {
+                internalType: 'bytes',
+                name: 'data',
+                type: 'bytes',
+            },
         ],
-        internalType: "struct DataTypes.PostData",
-        name: "vars",
-        type: "tuple",
-      },
-    ],
-    name: "post",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "postList",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
-    name: "profiles",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "rating",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        components: [
-          {
-            internalType: "uint256",
-            name: "profileId",
-            type: "uint256",
-          },
-          {
-            internalType: "string",
-            name: "contentURI",
-            type: "string",
-          },
-          {
-            internalType: "uint256",
-            name: "profileIdPointed",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "pubIdPointed",
-            type: "uint256",
-          },
-          {
-            internalType: "bytes",
-            name: "referenceModuleData",
-            type: "bytes",
-          },
-          {
-            internalType: "address",
-            name: "collectModule",
-            type: "address",
-          },
-          {
-            internalType: "bytes",
-            name: "collectModuleInitData",
-            type: "bytes",
-          },
-          {
-            internalType: "address",
-            name: "referenceModule",
-            type: "address",
-          },
-          {
-            internalType: "bytes",
-            name: "referenceModuleInitData",
-            type: "bytes",
-          },
+        name: 'collect',
+        outputs: [],
+        stateMutability: 'nonpayable',
+        type: 'function',
+    },
+    {
+        inputs: [
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+            },
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+            },
         ],
-        internalType: "struct DataTypes.CommentData",
-        name: "vars",
-        type: "tuple",
-      },
-    ],
-    name: "setComment",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_lensHub",
-        type: "address",
-      },
-    ],
-    name: "setLensHubAddress",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_profileId",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_profileIdPointed",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_postId",
-        type: "uint256",
-      },
-    ],
-    name: "setLike",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        components: [
-          {
-            internalType: "uint256",
-            name: "profileId",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "profileIdPointed",
-            type: "uint256",
-          },
-          {
-            internalType: "uint256",
-            name: "pubIdPointed",
-            type: "uint256",
-          },
-          {
-            internalType: "bytes",
-            name: "referenceModuleData",
-            type: "bytes",
-          },
-          {
-            internalType: "address",
-            name: "referenceModule",
-            type: "address",
-          },
-          {
-            internalType: "bytes",
-            name: "referenceModuleInitData",
-            type: "bytes",
-          },
+        name: 'collections',
+        outputs: [
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+            },
         ],
-        internalType: "struct DataTypes.MirrorData",
-        name: "vars",
-        type: "tuple",
-      },
-    ],
-    name: "setMirror",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        components: [
-          {
-            internalType: "uint256",
-            name: "profileId",
-            type: "uint256",
-          },
-          {
-            internalType: "string",
-            name: "contentURI",
-            type: "string",
-          },
-          {
-            internalType: "address",
-            name: "collectModule",
-            type: "address",
-          },
-          {
-            internalType: "bytes",
-            name: "collectModuleInitData",
-            type: "bytes",
-          },
-          {
-            internalType: "address",
-            name: "referenceModule",
-            type: "address",
-          },
-          {
-            internalType: "bytes",
-            name: "referenceModuleInitData",
-            type: "bytes",
-          },
+        stateMutability: 'view',
+        type: 'function',
+    },
+    {
+        inputs: [
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+            },
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+            },
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+            },
         ],
-        internalType: "struct DataTypes.PostData",
-        name: "vars",
-        type: "tuple",
-      },
-    ],
-    name: "setPost",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
+        name: 'comments',
+        outputs: [
+            {
+                internalType: 'uint256',
+                name: 'profileId',
+                type: 'uint256',
+            },
+            {
+                internalType: 'uint256',
+                name: 'profileIdPointed',
+                type: 'uint256',
+            },
+            {
+                internalType: 'uint256',
+                name: 'pubId',
+                type: 'uint256',
+            },
+            {
+                internalType: 'uint256',
+                name: 'pubIdPointed',
+                type: 'uint256',
+            },
+        ],
+        stateMutability: 'view',
+        type: 'function',
+    },
+    {
+        inputs: [
+            {
+                internalType: 'uint256',
+                name: '_profileId',
+                type: 'uint256',
+            },
+            {
+                internalType: 'uint256',
+                name: '_postId',
+                type: 'uint256',
+            },
+        ],
+        name: 'getComments',
+        outputs: [
+            {
+                components: [
+                    {
+                        internalType: 'uint256',
+                        name: 'profileId',
+                        type: 'uint256',
+                    },
+                    {
+                        internalType: 'uint256',
+                        name: 'profileIdPointed',
+                        type: 'uint256',
+                    },
+                    {
+                        internalType: 'uint256',
+                        name: 'pubId',
+                        type: 'uint256',
+                    },
+                    {
+                        internalType: 'uint256',
+                        name: 'pubIdPointed',
+                        type: 'uint256',
+                    },
+                ],
+                internalType: 'struct NFTinStorage.Comments[]',
+                name: '',
+                type: 'tuple[]',
+            },
+        ],
+        stateMutability: 'view',
+        type: 'function',
+    },
+    {
+        inputs: [
+            {
+                internalType: 'uint256',
+                name: '_profileId',
+                type: 'uint256',
+            },
+        ],
+        name: 'getMirrors',
+        outputs: [
+            {
+                components: [
+                    {
+                        internalType: 'uint256',
+                        name: 'mirrorId',
+                        type: 'uint256',
+                    },
+                    {
+                        internalType: 'uint256',
+                        name: 'profileIdPointed',
+                        type: 'uint256',
+                    },
+                    {
+                        internalType: 'uint256',
+                        name: 'pubIdPointed',
+                        type: 'uint256',
+                    },
+                ],
+                internalType: 'struct NFTinStorage.Mirrors[]',
+                name: '',
+                type: 'tuple[]',
+            },
+        ],
+        stateMutability: 'view',
+        type: 'function',
+    },
+    {
+        inputs: [
+            {
+                internalType: 'uint256',
+                name: '_profileId',
+                type: 'uint256',
+            },
+        ],
+        name: 'getPostList',
+        outputs: [
+            {
+                internalType: 'uint256[]',
+                name: '',
+                type: 'uint256[]',
+            },
+        ],
+        stateMutability: 'view',
+        type: 'function',
+    },
+    {
+        inputs: [
+            {
+                internalType: 'address',
+                name: '_profileAddress',
+                type: 'address',
+            },
+        ],
+        name: 'getProfile',
+        outputs: [
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+            },
+        ],
+        stateMutability: 'view',
+        type: 'function',
+    },
+    {
+        inputs: [],
+        name: 'lensAddress',
+        outputs: [
+            {
+                internalType: 'address',
+                name: '',
+                type: 'address',
+            },
+        ],
+        stateMutability: 'view',
+        type: 'function',
+    },
+    {
+        inputs: [
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+            },
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+            },
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+            },
+        ],
+        name: 'likes',
+        outputs: [
+            {
+                internalType: 'bool',
+                name: '',
+                type: 'bool',
+            },
+        ],
+        stateMutability: 'view',
+        type: 'function',
+    },
+    {
+        inputs: [
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+            },
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+            },
+        ],
+        name: 'likesCount',
+        outputs: [
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+            },
+        ],
+        stateMutability: 'view',
+        type: 'function',
+    },
+    {
+        inputs: [
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+            },
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+            },
+        ],
+        name: 'mirrors',
+        outputs: [
+            {
+                internalType: 'uint256',
+                name: 'mirrorId',
+                type: 'uint256',
+            },
+            {
+                internalType: 'uint256',
+                name: 'profileIdPointed',
+                type: 'uint256',
+            },
+            {
+                internalType: 'uint256',
+                name: 'pubIdPointed',
+                type: 'uint256',
+            },
+        ],
+        stateMutability: 'view',
+        type: 'function',
+    },
+    {
+        inputs: [
+            {
+                internalType: 'uint256',
+                name: '_profileId',
+                type: 'uint256',
+            },
+        ],
+        name: 'onboardNewProfile',
+        outputs: [],
+        stateMutability: 'nonpayable',
+        type: 'function',
+    },
+    {
+        inputs: [
+            {
+                components: [
+                    {
+                        internalType: 'uint256',
+                        name: 'profileId',
+                        type: 'uint256',
+                    },
+                    {
+                        internalType: 'string',
+                        name: 'contentURI',
+                        type: 'string',
+                    },
+                    {
+                        internalType: 'address',
+                        name: 'collectModule',
+                        type: 'address',
+                    },
+                    {
+                        internalType: 'bytes',
+                        name: 'collectModuleInitData',
+                        type: 'bytes',
+                    },
+                    {
+                        internalType: 'address',
+                        name: 'referenceModule',
+                        type: 'address',
+                    },
+                    {
+                        internalType: 'bytes',
+                        name: 'referenceModuleInitData',
+                        type: 'bytes',
+                    },
+                ],
+                internalType: 'struct DataTypes.PostData',
+                name: 'vars',
+                type: 'tuple',
+            },
+        ],
+        name: 'post',
+        outputs: [
+            {
+                internalType: 'bool',
+                name: '',
+                type: 'bool',
+            },
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+            },
+        ],
+        stateMutability: 'nonpayable',
+        type: 'function',
+    },
+    {
+        inputs: [
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+            },
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+            },
+        ],
+        name: 'postList',
+        outputs: [
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+            },
+        ],
+        stateMutability: 'view',
+        type: 'function',
+    },
+    {
+        inputs: [
+            {
+                internalType: 'address',
+                name: '',
+                type: 'address',
+            },
+        ],
+        name: 'profiles',
+        outputs: [
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+            },
+        ],
+        stateMutability: 'view',
+        type: 'function',
+    },
+    {
+        inputs: [
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+            },
+        ],
+        name: 'rating',
+        outputs: [
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256',
+            },
+        ],
+        stateMutability: 'view',
+        type: 'function',
+    },
+    {
+        inputs: [
+            {
+                components: [
+                    {
+                        internalType: 'uint256',
+                        name: 'profileId',
+                        type: 'uint256',
+                    },
+                    {
+                        internalType: 'string',
+                        name: 'contentURI',
+                        type: 'string',
+                    },
+                    {
+                        internalType: 'uint256',
+                        name: 'profileIdPointed',
+                        type: 'uint256',
+                    },
+                    {
+                        internalType: 'uint256',
+                        name: 'pubIdPointed',
+                        type: 'uint256',
+                    },
+                    {
+                        internalType: 'bytes',
+                        name: 'referenceModuleData',
+                        type: 'bytes',
+                    },
+                    {
+                        internalType: 'address',
+                        name: 'collectModule',
+                        type: 'address',
+                    },
+                    {
+                        internalType: 'bytes',
+                        name: 'collectModuleInitData',
+                        type: 'bytes',
+                    },
+                    {
+                        internalType: 'address',
+                        name: 'referenceModule',
+                        type: 'address',
+                    },
+                    {
+                        internalType: 'bytes',
+                        name: 'referenceModuleInitData',
+                        type: 'bytes',
+                    },
+                ],
+                internalType: 'struct DataTypes.CommentData',
+                name: 'vars',
+                type: 'tuple',
+            },
+        ],
+        name: 'setComment',
+        outputs: [],
+        stateMutability: 'nonpayable',
+        type: 'function',
+    },
+    {
+        inputs: [
+            {
+                internalType: 'address',
+                name: '_lensHub',
+                type: 'address',
+            },
+        ],
+        name: 'setLensHubAddress',
+        outputs: [],
+        stateMutability: 'nonpayable',
+        type: 'function',
+    },
+    {
+        inputs: [
+            {
+                internalType: 'uint256',
+                name: '_profileId',
+                type: 'uint256',
+            },
+            {
+                internalType: 'uint256',
+                name: '_profileIdPointed',
+                type: 'uint256',
+            },
+            {
+                internalType: 'uint256',
+                name: '_postId',
+                type: 'uint256',
+            },
+        ],
+        name: 'setLike',
+        outputs: [],
+        stateMutability: 'nonpayable',
+        type: 'function',
+    },
+    {
+        inputs: [
+            {
+                components: [
+                    {
+                        internalType: 'uint256',
+                        name: 'profileId',
+                        type: 'uint256',
+                    },
+                    {
+                        internalType: 'uint256',
+                        name: 'profileIdPointed',
+                        type: 'uint256',
+                    },
+                    {
+                        internalType: 'uint256',
+                        name: 'pubIdPointed',
+                        type: 'uint256',
+                    },
+                    {
+                        internalType: 'bytes',
+                        name: 'referenceModuleData',
+                        type: 'bytes',
+                    },
+                    {
+                        internalType: 'address',
+                        name: 'referenceModule',
+                        type: 'address',
+                    },
+                    {
+                        internalType: 'bytes',
+                        name: 'referenceModuleInitData',
+                        type: 'bytes',
+                    },
+                ],
+                internalType: 'struct DataTypes.MirrorData',
+                name: 'vars',
+                type: 'tuple',
+            },
+        ],
+        name: 'setMirror',
+        outputs: [],
+        stateMutability: 'nonpayable',
+        type: 'function',
+    },
+    {
+        inputs: [
+            {
+                components: [
+                    {
+                        internalType: 'uint256',
+                        name: 'profileId',
+                        type: 'uint256',
+                    },
+                    {
+                        internalType: 'string',
+                        name: 'contentURI',
+                        type: 'string',
+                    },
+                    {
+                        internalType: 'address',
+                        name: 'collectModule',
+                        type: 'address',
+                    },
+                    {
+                        internalType: 'bytes',
+                        name: 'collectModuleInitData',
+                        type: 'bytes',
+                    },
+                    {
+                        internalType: 'address',
+                        name: 'referenceModule',
+                        type: 'address',
+                    },
+                    {
+                        internalType: 'bytes',
+                        name: 'referenceModuleInitData',
+                        type: 'bytes',
+                    },
+                ],
+                internalType: 'struct DataTypes.PostData',
+                name: 'vars',
+                type: 'tuple',
+            },
+        ],
+        name: 'setPost',
+        outputs: [],
+        stateMutability: 'nonpayable',
+        type: 'function',
+    },
 ];
 
 export class Nftin__factory {
-  static readonly abi = _abi;
-  static createInterface(): NftinInterface {
-    return new utils.Interface(_abi) as NftinInterface;
-  }
-  static connect(address: string, signerOrProvider: Signer | Provider): Nftin {
-    return new Contract(address, _abi, signerOrProvider) as Nftin;
-  }
+    static readonly abi = _abi;
+    static createInterface(): NftinInterface {
+        return new utils.Interface(_abi) as NftinInterface;
+    }
+    static connect(address: string, signerOrProvider: Signer | Provider): Nftin {
+        return new Contract(address, _abi, signerOrProvider) as Nftin;
+    }
 }

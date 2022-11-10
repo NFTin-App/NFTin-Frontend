@@ -72,7 +72,7 @@ export const SelectLensProfile = () => {
                 <OutlineButton
                     disabled={isPending}
                     borderColor={buttonColor}
-                    textAttirbutes={{
+                    textAttributes={{
                         color: buttonColor,
                     }}
                     // TODO обработка завершение контракта, сделать лоадинг

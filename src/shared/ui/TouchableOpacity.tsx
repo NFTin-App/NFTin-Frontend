@@ -12,5 +12,11 @@ type Props = TouchableOpacityProps & ViewStyleProps;
 export const TouchableOpacity = memo(({ style, ...rest }: Props) => {
     const viewStyle = useViewStyle(rest);
 
-    return <RNTouchableOpacity {...rest} style={StyleSheet.compose(viewStyle, style)} />;
+    return (
+        <RNTouchableOpacity
+            activeOpacity={0.6}
+            {...rest}
+            style={StyleSheet.compose(viewStyle, style)}
+        />
+    );
 });

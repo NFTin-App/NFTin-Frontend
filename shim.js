@@ -10,10 +10,9 @@ if (typeof Buffer === 'undefined') {
     global.Buffer = require('buffer').Buffer;
 }
 
-
 LogBox.ignoreLogs([
     "The provided value 'ms-stream' is not a valid 'responseType'.",
-    "The provided value 'moz-chunked-arraybuffer' is not a valid 'responseType'."
+    "The provided value 'moz-chunked-arraybuffer' is not a valid 'responseType'.",
 ]);
 
 process.version = 'v9.40';

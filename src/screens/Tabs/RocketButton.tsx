@@ -9,7 +9,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import Svg, { Defs, LinearGradient, Rect, Stop } from 'react-native-svg';
 
-import { DropShadow, RocketIcon, TouchableWithoutFeedback, useTheme, View } from '@shared/ui';
+import { useTheme } from '@shared/lib';
+import { DropShadow, RocketIcon, TouchableWithoutFeedback, View } from '@shared/ui';
 
 const GRADIENT_NAME = 'background-gradient';
 

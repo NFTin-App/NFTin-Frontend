@@ -18,7 +18,7 @@ export const LoginAsGuest = ({ title }: Props) => {
 
     return (
         <OutlineButton
-            textAttirbutes={{ fontSize: 16, fontWeight: '600', color: 'purple' }}
+            textAttributes={{ fontSize: 16, fontWeight: '600' }}
             title={title}
             onPress={onPress}
         />

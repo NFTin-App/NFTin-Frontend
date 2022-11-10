@@ -4,9 +4,9 @@ import { Path, Svg } from 'react-native-svg';
 
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { RouteProp } from '@react-navigation/native';
-import { assert } from '@shared/lib';
+import { assert, useTheme } from '@shared/lib';
 import { RootTabParamList } from '@shared/types';
-import { DropShadow, useTheme, View } from '@shared/ui';
+import { DropShadow, View } from '@shared/ui';
 
 import { RocketButton } from './RocketButton';
 import { TabBarButton } from './TabBarButton';

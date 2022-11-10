@@ -4,10 +4,9 @@ export interface Theme {
         primary200: string;
         accent100: string;
         accent200: string;
-        purple: string;
         white: string;
-        pink: string;
-        black: string;
+        black100: string;
+        black200: string;
         gray100: string;
         gray200: string;
         gray300: string;

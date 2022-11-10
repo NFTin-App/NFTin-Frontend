@@ -3,8 +3,9 @@ import { useCallback } from 'react';
 import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 import { RouteProp } from '@react-navigation/core';
 import { useNavigation } from '@react-navigation/native';
+import { useTheme } from '@shared/lib';
 import { ProfileScreenNavigationProp, RootTabParamList } from '@shared/types';
-import { TouchableWithoutFeedback, useTheme, View } from '@shared/ui';
+import { TouchableWithoutFeedback, View } from '@shared/ui';
 
 interface Props extends BottomTabNavigationOptions {
     route: RouteProp<RootTabParamList, keyof RootTabParamList>;

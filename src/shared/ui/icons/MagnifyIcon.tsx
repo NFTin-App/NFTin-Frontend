@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 import { Path } from 'react-native-svg';
 
 import { Icon } from './Icon';

@@ -2,14 +2,13 @@ import { FlexStyle, ImageStyle, TextStyle, ViewStyle } from 'react-native';
 import ReactNativeStyleAttributes from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 import { isUndefined, omitBy, pick } from 'lodash';
 
-import { Pallete } from '@shared/types';
+import { Pallete, Theme } from '@shared/types';
 
-import { theme } from './theme';
+import { useTheme } from './theme';
 
 const REACT_NATIVE_STYLE_ATTRIBUTES = Object.keys(ReactNativeStyleAttributes);
 
 type Color = keyof Pallete | (string & {});
-type StyleColor = string | undefined;
 type ColorAttributes = 'bgColor' | 'backgroundColor' | 'color' | 'borderColor';
 
 interface FlexStyleAliases {
@@ -25,19 +24,17 @@ interface FlexStyleAliases {
     m?: FlexStyle['margin'];
 }
 
-type ColorStyleAliases<T> = ColorAttributesProps<Color> & Omit<T, ColorAttributes>;
-
-type ColorAttributesProps<T> = Partial<Record<ColorAttributes, T>>;
+type ColorProps = Partial<Record<ColorAttributes, Color>>;
 
 type FlexStyleProps = FlexStyle & FlexStyleAliases;
 
-export type ViewStyleProps = FlexStyleAliases & ColorStyleAliases<ViewStyle>;
+export type ViewStyleProps = ViewStyle & FlexStyleAliases & ColorProps;
 
 export type ImageStyleProps = ImageStyle & FlexStyleAliases;
 
-export type TextStyleProps = ColorStyleAliases<TextStyle>;
+export type TextStyleProps = TextStyle & ColorProps;
 
-const getThemeColor = (color: Color | undefined): string | undefined => {
+export const getThemeColor = (theme: Theme, color: Color | undefined): string | undefined => {
     return theme.palette[color as keyof Pallete] || color;
 };
 
@@ -56,36 +53,39 @@ const pickFlexStyleAliases = (props: FlexStyleProps): FlexStyle => ({
     marginLeft: props.ml,
 });
 
-const pickColorStyleAliases = <T extends ColorAttributesProps<Color>>(
-    props: T
-): ColorAttributesProps<StyleColor> => {
+const useColorProps = <T extends ColorProps>(props: T): ColorProps => {
+    const { getColor } = useTheme();
     const backgroundColor = props.backgroundColor ?? props.bgColor;
 
     return {
-        backgroundColor: getThemeColor(backgroundColor),
-        borderColor: getThemeColor(props.borderColor),
-        color: getThemeColor(props.color),
+        backgroundColor: backgroundColor ? getColor(backgroundColor) : undefined,
+        borderColor: props.borderColor ? getColor(props.borderColor) : undefined,
+        color: props.color ? getColor(props.color) : undefined,
     };
 };
 
-export const useViewStyle = (props: ViewStyleProps): ViewStyle =>
-    omitBy(
+export const useViewStyle = (props: ViewStyleProps): ViewStyle => {
+    const colorProps = useColorProps(props);
+    return omitBy(
         {
             ...pickReactNativeStyleAttributes(props),
             ...pickFlexStyleAliases(props),
-            ...pickColorStyleAliases(props),
+            ...colorProps,
         },
         isUndefined
     );
+};
 
-export const useTextStyle = (props: TextStyleProps): TextStyle =>
-    omitBy(
+export const useTextStyle = (props: TextStyleProps): TextStyle => {
+    const colorProps = useColorProps(props);
+    return omitBy(
         {
             ...pickReactNativeStyleAttributes(props),
-            ...pickColorStyleAliases(props),
+            ...colorProps,
         },
         isUndefined
     );
+};
 
 export const useImageStyle = (props: ImageStyleProps): ImageStyle =>
     omitBy(

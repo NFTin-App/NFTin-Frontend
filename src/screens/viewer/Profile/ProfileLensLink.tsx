@@ -53,7 +53,7 @@ export const ProfileLensLink = () => {
 
             <View width='100%' marginBottom='25%'>
                 <Button
-                    textAttirbutes={{ fontSize: 16, fontWeight: '600' }}
+                    textAttributes={{ fontSize: 16, fontWeight: '600' }}
                     title='Yes, connect Lens profile'
                     width='100%'
                     onPress={redirectToConnect}
