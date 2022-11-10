@@ -1,14 +1,10 @@
-import { useGate } from 'effector-react';
-
+import { SignOutButton } from '@features/auth';
 import { Text, View } from '@shared/ui';
 
-import { pageGate } from './loadingModel';
-
 export const Loading = () => {
-    useGate(pageGate);
-
     return (
         <View>
+            <SignOutButton />
             <Text color='black'>App loading</Text>
         </View>
     );

@@ -14,6 +14,9 @@ export const $profile = createStore<Nullable<Profile>>(null);
 export const getProfileId = createEvent<Address>();
 export const getProfile = createEvent<ProfileId>();
 
+export const getProfileIdFinished = getProfileIdFx.doneData;
+export const getProfileFinished = getProfileFx.doneData;
+
 sample({
     clock: getProfileId,
     fn: (address) => ({ address }),

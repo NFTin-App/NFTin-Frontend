@@ -1,4 +1,4 @@
-import { attach, createEvent, sample } from 'effector';
+import { attach, createEffect, createEvent, sample } from 'effector';
 
 import { viewerModel } from '@entities/viewer';
 import { linkLensProfileToAddressFx as linkLensProfileToAddressFxApi } from '@shared/api/nftinContract';
@@ -9,15 +9,17 @@ const linkLensProfileToAddressFx = attach({ effect: linkLensProfileToAddressFxAp
 
 export const connectWalletFx = attach({
     source: viewerModel.$connector,
-    effect: async (connector) => {
+    effect: (connector) => {
         connector?.connect({ chainId: POLYGON_CHAIN_ID });
     },
 });
 
 export const killWalletSessonFx = attach({
     source: viewerModel.$connector,
-    effect: (connector) => {
-        connector?.killSession();
+    effect: async (connector) => {
+        await connector?.killSession();
+        viewerModel.updateGuestFx(true);
+        viewerModel.resetViewer();
     },
 });
 
@@ -33,5 +35,10 @@ sample({
 
 sample({
     source: linkLensProfileToAddressFx.doneData,
-    target: viewerModel.getViewerProfileId,
+    target: [
+        viewerModel.getViewerProfileId,
+        createEffect(() => {
+            viewerModel.updateGuestFx(false);
+        }),
+    ],
 });

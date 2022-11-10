@@ -1,35 +1,36 @@
-import { attach, createEffect, createEvent, restore } from 'effector';
+import { attach, createEffect, createEvent, createStore, sample } from 'effector';
 
 import { Nullable } from '@shared/types';
 
-import { Navigation, ScreenItem } from './navigationTypes';
+import { NavigateParams, Navigation, RouteName } from './navigationTypes';
 
-export const initedNavigation = createEvent<Navigation>();
+export const navigationInited = createEvent<Navigation>();
 
-export const $navigation = restore(initedNavigation, null);
+export const $navigation = createStore<Nullable<Navigation>>(null);
 
-export const navigate = createEvent<ScreenItem>();
+export const navigate = createEvent<RouteName>();
 
-interface NavigateFxParams {
-    screen: ScreenItem;
-    navigation: Nullable<Navigation>;
-}
+sample({
+    clock: navigationInited,
+    filter: (navigation) => navigation.isReady(),
+    target: $navigation,
+});
 
-export const resetNavigateFx = attach({
-    source: $navigation,
-    mapParams: (screen: ScreenItem, navigation) => ({ screen, navigation }),
-    effect: createEffect(({ navigation, screen }: NavigateFxParams) => {
+export const createNavigationFx = (callback: (navigation: Nullable<Navigation>) => void) =>
+    attach({
+        source: $navigation,
+        effect: createEffect((navigation: Nullable<Navigation>) => {
+            callback(navigation);
+        }),
+    });
+
+export const createResetNavigateFx = <T extends RouteName>(
+    ...[screen, params]: NavigateParams<T>
+) => {
+    return createNavigationFx((navigation) => {
         navigation?.reset({
             index: 0,
-            routes: [{ name: screen }],
+            routes: [{ name: screen, params }],
         });
-    }),
-});
-
-export const navigateFx = attach({
-    source: $navigation,
-    mapParams: (screen: ScreenItem, navigation) => ({ screen, navigation }),
-    effect: createEffect(({ navigation, screen }: NavigateFxParams) => {
-        navigation?.navigate(screen);
-    }),
-});
+    });
+};

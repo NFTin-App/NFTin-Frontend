@@ -1,23 +1,43 @@
 import { memo } from 'react';
-import { useEvent, useGate, useStore } from 'effector-react';
+import { useGate, useStore } from 'effector-react';
 
-import { navigationModel } from '@entities/navigation';
 import { profileModel } from '@entities/profile';
 import { SignOutButton } from '@features/auth';
+import { useIsFocused } from '@react-navigation/native';
+import { HomeTabScreenProps } from '@shared/types';
 import { Button, Text, View } from '@shared/ui';
 
+import { ProfileLensLink } from './ProfileLensLink';
 import { ProfileLoading } from './ProfileLoading';
-import { pageGate } from './profileModel';
+import { $profileStatus, pageGate } from './profileModel';
+import { ProfileStatus } from './profileTypes';
+import { ProfileWalletConnect } from './ProfileWalletConnect';
 
-export const ProfilePage = memo(() => {
-    useGate(pageGate);
+const renderProfile = (profileStatus: ProfileStatus) => {
+    switch (profileStatus) {
+        case 'loading':
+            return <ProfileLoading />;
+        case 'needLensProfile':
+            return <ProfileLensLink />;
+        case 'needWalletConnect':
+            return <ProfileWalletConnect />;
+        default:
+            return null;
+    }
+};
 
-    const navigate = useEvent(navigationModel.resetNavigateFx);
+export const ProfilePage = memo(({ navigation }: HomeTabScreenProps<'Profile'>) => {
+    const isFocused = useIsFocused();
+
+    useGate(pageGate, isFocused);
+
+    const profileStatus = useStore($profileStatus);
     const profile = useStore(profileModel.$profile);
 
-    // ? поменять на viewerModel.getViewerProfileIdFx.pending?
-    if (!profile) {
-        return <ProfileLoading />;
+    const profileContent = renderProfile(profileStatus);
+
+    if (profileContent) {
+        return profileContent;
     }
 
     return (
@@ -29,7 +49,7 @@ export const ProfilePage = memo(() => {
                 <Button
                     title='to selectProfile'
                     onPress={() => {
-                        navigate('ConnectLensProfile');
+                        navigation.navigate('ConnectLensProfile');
                     }}
                 />
                 <SignOutButton />

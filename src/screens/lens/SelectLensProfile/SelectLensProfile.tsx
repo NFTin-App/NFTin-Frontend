@@ -55,7 +55,7 @@ export const SelectLensProfile = () => {
                         marginTop={40}
                         fontSize={16}
                     >
-                        Choose the profile NFT you want to connect to NFTin
+                        Choose the profile you want to connect to NFTin
                     </Text>
                 </View>
 

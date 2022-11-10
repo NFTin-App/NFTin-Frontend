@@ -13,7 +13,8 @@ import { generateDefaultScreenOptions } from './lib';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const Routing = () => {
-    const isProvider = useStore(viewerModel.$provider.map((provider) => !!provider));
+    const isConnected = useStore(viewerModel.$isConnected);
+    const isLensConnected = useStore(viewerModel.$isLensConnected);
 
     return (
         <Stack.Navigator
@@ -22,13 +23,17 @@ export const Routing = () => {
             }}
             initialRouteName='Loading'
         >
-            {!isProvider && <Stack.Screen name='ConnectWallet' component={ConnectWalletPage} />}
-            <Stack.Screen name='ConnectLensProfile' component={ConnectLensProfile} />
-            <Stack.Screen
-                options={generateDefaultScreenOptions({ title: 'Lens Profile' })}
-                name='SelectLensProfile'
-                component={SelectLensProfile}
-            />
+            {!isConnected && <Stack.Screen name='ConnectWallet' component={ConnectWalletPage} />}
+            {!isLensConnected && (
+                <>
+                    <Stack.Screen name='ConnectLensProfile' component={ConnectLensProfile} />
+                    <Stack.Screen
+                        options={generateDefaultScreenOptions({ title: 'Lens Profile' })}
+                        name='SelectLensProfile'
+                        component={SelectLensProfile}
+                    />
+                </>
+            )}
             <Stack.Screen name='Loading' component={Loading} />
             <Stack.Screen name='Tabs' component={Tabs} />
         </Stack.Navigator>

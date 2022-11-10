@@ -1,4 +1,4 @@
-import { createEffect, createEvent, restore, sample } from 'effector';
+import { createEvent, restore, sample } from 'effector';
 import { createGate } from 'effector-react';
 import { combineEvents } from 'patronum';
 
@@ -26,7 +26,5 @@ const lensProfileLinked = combineEvents({
 
 sample({
     clock: lensProfileLinked,
-    target: createEffect(() => {
-        navigationModel.resetNavigateFx('Profile');
-    }),
+    target: navigationModel.createResetNavigateFx('Tabs', { screen: 'Profile' }),
 });
