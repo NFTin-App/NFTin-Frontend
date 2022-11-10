@@ -2,7 +2,7 @@ import { useEvent } from 'effector-react';
 
 import { OutlineButton } from '@shared/ui';
 
-import { killWalletSessonFx } from '../model';
+import { killWalletSessonFx } from '../authModel';
 
 export const SignOut = () => {
     const killWalletSession = useEvent(killWalletSessonFx);
@@ -10,7 +10,7 @@ export const SignOut = () => {
     return (
         <OutlineButton
             title='Sign Out'
-            textAttributes={{ color: 'purple' }}
+            textAttributes={{ color: 'primary' }}
             onPress={killWalletSession}
         />
     );

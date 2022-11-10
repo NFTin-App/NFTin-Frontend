@@ -1,12 +1,12 @@
-import { memo } from 'react';
+import { forwardRef } from 'react';
 import { StyleSheet, View as RNView, ViewProps } from 'react-native';
 
 import { useViewStyle, ViewStyleProps } from '@shared/lib';
 
 type Props = ViewProps & ViewStyleProps;
 
-export const View = memo(({ style, ...rest }: Props) => {
+export const View = forwardRef<RNView, Props>(({ style, ...rest }, ref) => {
     const viewStyle = useViewStyle(rest);
 
-    return <RNView style={StyleSheet.compose(viewStyle, style)} {...rest} />;
+    return <RNView ref={ref} style={StyleSheet.compose(viewStyle, style)} {...rest} />;
 });

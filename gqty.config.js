@@ -3,14 +3,14 @@
  */
 const config = {
     enumsAsStrings: false,
-    react: true,
+    react: false,
     scalarTypes: { DateTime: 'string' },
     preImport: '',
     introspection: {
         endpoint: 'https://api-mumbai.lens.dev',
         headers: {},
     },
-    destination: './src/gqty/index.ts',
+    destination: './src/shared/api/lens/generated/index.ts',
     subscriptions: false,
 };
 

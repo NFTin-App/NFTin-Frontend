@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export type Storage = {
+export interface Storage {
     getValue: () => Promise<string | null>;
     setValue: (value: string | undefined) => Promise<void>;
-};
+}
 
 export type StorageFactory = (key: string) => Storage;
 

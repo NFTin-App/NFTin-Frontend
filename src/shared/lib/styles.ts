@@ -3,7 +3,8 @@ import ReactNativeStyleAttributes from 'react-native/Libraries/Components/View/R
 import { isUndefined, omitBy, pick } from 'lodash';
 
 import { Pallete, Theme } from '@shared/types';
-import { useTheme } from '@shared/ui';
+
+import { useTheme } from './theme';
 
 const REACT_NATIVE_STYLE_ATTRIBUTES = Object.keys(ReactNativeStyleAttributes);
 

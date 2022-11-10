@@ -2,8 +2,7 @@ import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
 import Svg, { Defs, LinearGradient, Stop, SvgProps } from 'react-native-svg';
 
-import { useViewStyle, ViewStyleProps } from '@shared/lib';
-import { useTheme } from '@shared/ui';
+import { useTheme, useViewStyle, ViewStyleProps } from '@shared/lib';
 
 const GRADIENTS: Record<string, string> = {
     accentGradient: 'accent_gradient',
@@ -19,7 +18,7 @@ const getGradient = (name: string): string | undefined => {
 type Props = Omit<SvgProps, 'stroke' | 'fill'> &
     ViewStyleProps & {
         outline?: boolean;
-        color: ViewStyleProps['borderColor'] & keyof typeof GRADIENTS;
+        color?: ViewStyleProps['borderColor'] & keyof typeof GRADIENTS;
     };
 
 export const Icon = memo(
@@ -47,6 +46,8 @@ export const Icon = memo(
                 {...rest}
             >
                 <Defs>
+                    {/* // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                // @ts-expect-error */}
                     <LinearGradient
                         id={GRADIENTS.accentGradient}
                         x1='0%'

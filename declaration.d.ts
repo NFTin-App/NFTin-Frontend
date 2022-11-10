@@ -1,5 +1,9 @@
 declare module '*.scss';
 
+declare module '*.webp';
+
+declare module '*.mp4';
+
 declare module '*.jpg' {
     const content: string;
     export default content;

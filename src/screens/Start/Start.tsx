@@ -9,6 +9,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { useNavigation } from '@react-navigation/native';
+import { ProfileScreenNavigationProp } from '@shared/types';
 import {
     Button,
     ChatIcon,
@@ -31,7 +32,7 @@ const AnimatedView = Animated.createAnimatedComponent(View);
 const AnimatedImage = Animated.createAnimatedComponent(Image);
 
 export const Start = () => {
-    const { navigate } = useNavigation();
+    const { navigate } = useNavigation<ProfileScreenNavigationProp>();
 
     const nftCardAnimationController = useSharedValue(0);
     const rocketAnimationController = useSharedValue(0);
@@ -107,7 +108,7 @@ export const Start = () => {
         actionButtonAnimationController,
     ]);
 
-    const handleButtonPress = useCallback(() => navigate('Login'), [navigate]);
+    const handleButtonPress = useCallback(() => navigate('ConnectWallet'), [navigate]);
 
     const rocketStyle = useAnimatedStyle(() => {
         const rocketY = interpolate(rocketAnimationController.value, [0, 1], [1200, 0]);
