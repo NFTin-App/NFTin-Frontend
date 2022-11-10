@@ -1,12 +1,11 @@
 import { useGate } from 'effector-react';
 
-import { ScreenProps } from '@shared/types';
 import { Text, View } from '@shared/ui';
 
 import { pageGate } from './loadingModel';
 
-export const Loading = ({ navigation }: ScreenProps<'Loading'>) => {
-    useGate(pageGate, navigation);
+export const Loading = () => {
+    useGate(pageGate);
 
     return (
         <View>

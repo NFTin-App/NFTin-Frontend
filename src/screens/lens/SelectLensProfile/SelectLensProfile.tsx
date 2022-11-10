@@ -4,14 +4,13 @@ import { useEvent, useGate, useStore, useUnit } from 'effector-react';
 
 import { ProfileItem as TProfileItem, profileModel } from '@entities/profile';
 import { authModel } from '@features/auth';
-import { ScreenProps } from '@shared/types';
 import { OutlineButton, Text, View } from '@shared/ui';
 
 import { ProfileItem } from './ProfileSelectItem';
 import { $profileId, pageGate, updateProfileId } from './selectLensProfileModel';
 
-export const SelectLensProfile = ({ navigation }: ScreenProps<'SelectLensProfile'>) => {
-    useGate(pageGate, navigation);
+export const SelectLensProfile = () => {
+    useGate(pageGate);
 
     const [profileId, setProfileId] = useUnit([$profileId, updateProfileId]);
     const profiles = useStore(profileModel.$profiles);
