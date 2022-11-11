@@ -9,21 +9,28 @@ import { HomeIcon, MagnifyIcon, NewsIcon, UserIcon } from '@shared/ui';
 import { TabBar } from './TabBar';
 import { TabBarIcon } from './TabBarIcon';
 
-const homeTabIcon = TabBarIcon(HomeIcon);
-const searchTabIcon = TabBarIcon(MagnifyIcon);
-const actifityFeedTabIcon = TabBarIcon(NewsIcon);
-const profileTabIcon = TabBarIcon(UserIcon);
+const homeTabIcon = TabBarIcon(HomeIcon, true);
+const searchTabIcon = TabBarIcon(MagnifyIcon, true);
+const actifityFeedTabIcon = TabBarIcon(NewsIcon, true);
+const profileTabIcon = TabBarIcon(UserIcon, false);
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
 export const Tabs = () => {
     return (
-        <Tab.Navigator initialRouteName='Home' tabBar={(props) => <TabBar {...props} />}>
+        <Tab.Navigator
+            screenOptions={{
+                headerShown: false,
+            }}
+            initialRouteName='Home'
+            tabBar={(props) => <TabBar {...props} />}
+        >
             <Tab.Screen
                 name='Home'
                 component={Home}
                 options={{
                     tabBarIcon: homeTabIcon,
+                    title: 'home',
                 }}
             />
             <Tab.Screen
@@ -31,6 +38,7 @@ export const Tabs = () => {
                 component={Search}
                 options={{
                     tabBarIcon: searchTabIcon,
+                    title: 'search',
                 }}
             />
             <Tab.Screen
@@ -38,6 +46,7 @@ export const Tabs = () => {
                 component={ActivityFeed}
                 options={{
                     tabBarIcon: actifityFeedTabIcon,
+                    title: 'activity',
                 }}
             />
             <Tab.Screen
@@ -45,6 +54,7 @@ export const Tabs = () => {
                 component={ProfilePage}
                 options={{
                     tabBarIcon: profileTabIcon,
+                    title: 'profile',
                 }}
             />
         </Tab.Navigator>

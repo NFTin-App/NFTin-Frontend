@@ -7,6 +7,5 @@ type Props = ViewProps & ViewStyleProps;
 
 export const View = forwardRef<RNView, Props>(({ style, ...rest }, ref) => {
     const viewStyle = useViewStyle(rest);
-
     return <RNView ref={ref} style={StyleSheet.compose(viewStyle, style)} {...rest} />;
 });

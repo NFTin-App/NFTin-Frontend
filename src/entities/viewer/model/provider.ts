@@ -12,7 +12,7 @@ export const providerInited = createEvent<Provider>();
 const initProviderFx = createEffect(async (connector: Connector) => {
     const provider = new WalletConnectProvider({
         // TODO .env
-        infuraId: 'f5cef58c96844c46a1388f7143ecc6d',
+        infuraId: 'f5cef58c96844c46a1388f7143ecc6d4',
         connector,
         pollingInterval: 1000,
         chainId: POLYGON_CHAIN_ID,

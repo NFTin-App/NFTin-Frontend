@@ -20,11 +20,11 @@ sample({
     target: profileModel.getProfiles,
 });
 
-const lensProfileLinked = combineEvents({
-    events: [authModel.linkLensProfileToAddressDone, viewerModel.getViewerProfileIdFinished],
+const profileInited = combineEvents({
+    events: [authModel.initProfileFx.doneData, viewerModel.getViewerProfileIdFinished],
 });
 
 sample({
-    clock: lensProfileLinked,
+    clock: profileInited,
     target: navigationModel.createResetNavigateFx('Tabs', { screen: 'Profile' }),
 });

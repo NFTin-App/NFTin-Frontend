@@ -1,5 +1,5 @@
 import { attach, createEvent, createStore, sample } from 'effector';
-import { combineEvents } from 'patronum';
+import { combineEvents, debug } from 'patronum';
 
 import { getProfileIdFx as getProfileIdFxApi } from '@shared/api/nftinContract';
 import { Nullable } from '@shared/types';
@@ -18,7 +18,7 @@ export const $isLensConnected = $viewer.map((viewer) => isValidProfile(viewer?.p
 export const getViewerProfileId = createEvent();
 export const getViewerProfileIdFinished = getViewerProfileIdFx.doneData;
 export const $isGetViewerProfileIdPending = getViewerProfileIdFx.pending;
-
+debug(getViewerProfileIdFx.doneData);
 sample({
     clock: getViewerProfileId,
     source: $viewer,

@@ -10,6 +10,8 @@ import { Tabs } from '@screens/Tabs';
 import { RootStackParamList } from '@shared/types';
 
 import { generateDefaultScreenOptions } from './lib';
+import { NftsList } from '@screens/NftsList';
+import { AddNft } from '@screens/AddNft';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -42,6 +44,19 @@ export const Routing = () => {
             )}
             <Stack.Screen name='Loading' component={Loading} />
             <Stack.Screen name='Tabs' component={Tabs} />
+            <Stack.Screen
+                name='NftsList'
+                options={generateDefaultScreenOptions({ title: 'Add nft' })}
+                component={NftsList}
+            />
+
+            <Stack.Group screenOptions={{ presentation: 'modal' }}>
+                <Stack.Screen
+                    options={generateDefaultScreenOptions({ title: 'Add nft' })}
+                    name='AddNft'
+                    component={AddNft}
+                />
+            </Stack.Group>
         </Stack.Navigator>
     );
 };

@@ -13,6 +13,8 @@ interface StackParamList {
     SelectLensProfile: undefined;
     Loading: undefined;
     Start: undefined;
+    NftsList: undefined;
+    AddNft: { id: string };
     Tabs: NavigatorScreenParams<TabParamList>;
 }
 

@@ -6,6 +6,8 @@ export interface Profile {
     id: string;
     name?: Maybe<string>;
     picture?: Maybe<ProfileMedia>;
+    totalFollowing?: number;
+    totalFollowers?: number;
 }
 
 export interface ProfileItem {

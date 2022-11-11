@@ -6,7 +6,6 @@ export interface Theme {
         accent200: string;
         white: string;
         black100: string;
-        black200: string;
         gray100: string;
         gray200: string;
         gray300: string;
@@ -16,5 +15,8 @@ export interface Theme {
         strokeWidth: number;
     };
 }
+
+export type Color = keyof Pallete | string;
+export type ColorAttributes = 'bgColor' | 'backgroundColor' | 'color' | 'borderColor';
 
 export type Pallete = Theme['palette'];

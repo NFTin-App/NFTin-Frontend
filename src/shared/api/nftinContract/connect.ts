@@ -6,14 +6,14 @@ import { CONTRACT_ADDRESS } from './config';
 import { Nftin, Nftin__factory } from './generated';
 import { Callback, EffectParams, Params } from './types';
 
-export const setContractFx = createEffect((signer: Nullable<Signer>) => {
+export const setNftinContractFx = createEffect((signer: Nullable<Signer>) => {
     return signer ? Nftin__factory.connect(CONTRACT_ADDRESS, signer) : null;
 });
 
 const $contract = createStore<Nullable<Nftin>>(null);
 
 sample({
-    clock: setContractFx.doneData,
+    clock: setNftinContractFx.doneData,
     target: $contract,
 });
 

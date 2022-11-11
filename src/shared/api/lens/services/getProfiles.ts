@@ -1,7 +1,7 @@
 import { createEffect } from 'effector';
 import { selectFields } from 'gqty';
 
-import { query, resolved } from '../generated';
+import { mutation, query, resolved } from '../generated';
 import { QueryParams } from '../types';
 
 interface GetProfilesParams extends QueryParams {

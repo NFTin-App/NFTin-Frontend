@@ -1,9 +1,10 @@
+import { Address } from '@shared/types';
 import { BigNumber } from 'ethers';
 
 import { attachContract } from '../connect';
 
 interface GetProfileIdParams {
-    address: string;
+    address: Address;
 }
 
 export const getProfileIdFx = attachContract<GetProfileIdParams, string>(

@@ -1,6 +1,6 @@
 import { ActionResponse, Nullable } from '@shared/types';
 
-import { Nftin } from './generated';
+import { Nftin } from '../nftinContract/generated';
 
 export type Params<T> = {
     contract: Nullable<Nftin>;

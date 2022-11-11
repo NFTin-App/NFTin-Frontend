@@ -11,7 +11,14 @@ export const BackButton = () => {
     };
 
     return (
-        <IconButton p={15} onPress={goBack}>
+        <IconButton
+            onPress={goBack}
+            width={44}
+            height={44}
+            borderRadius={8}
+            alignItems='center'
+            justifyContent='center'
+        >
             <ArrowBackIcon />
         </IconButton>
     );

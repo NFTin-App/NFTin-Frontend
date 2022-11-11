@@ -5,6 +5,7 @@ import { getProfileIdFx as getProfileIdFxApi } from '@shared/api/nftinContract';
 import { Address, Nullable, ProfileId } from '@shared/types';
 
 import { Profile } from '../profileTypes';
+import { debug } from 'patronum';
 
 const getProfileIdFx = attach({ effect: getProfileIdFxApi });
 const getProfileFx = attach({ effect: getProfileFxApi });
@@ -25,10 +26,22 @@ sample({
 
 sample({
     clock: getProfile,
-    fn: (profileId) => ({ profileId, queryParams: '*' as const }),
+    fn: (profileId) => ({
+        profileId,
+        queryParams: [
+            'handle',
+            'id',
+            'bio',
+            'name',
+            'picture',
+            'stats.totalFollowers',
+            'stats.totalFollowing',
+        ],
+    }),
     target: getProfileFx,
 });
 
+debug(getProfileIdFx.doneData);
 sample({
     clock: getProfileIdFx.doneData,
     target: getProfile,
@@ -43,6 +56,8 @@ sample({
         bio: profile.bio,
         name: profile.name,
         picture: profile.picture,
+        totalFollowers: profile.stats.totalFollowers,
+        totalFollowing: profile.stats.totalFollowing,
     }),
     target: $profile,
 });

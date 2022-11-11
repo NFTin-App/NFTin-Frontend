@@ -9,3 +9,8 @@ export * from './MagnifyIcon';
 export * from './NewsIcon';
 export * from './RocketIcon';
 export * from './UserIcon';
+export * from './CategoryIcon';
+export * from './AddIcon';
+export * from './LightningIcon';
+export * from './TokenIcon';
+export * from './DefaultAvatarIcon';

@@ -1,8 +1,9 @@
 import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
-import Svg, { Defs, LinearGradient, Stop, SvgProps } from 'react-native-svg';
+import Svg, { Defs, Stop, SvgProps } from 'react-native-svg';
 
 import { useTheme, useViewStyle, ViewStyleProps } from '@shared/lib';
+import { LinearGradient } from '../Svg/LinearGradient';
 
 const GRADIENTS: Record<string, string> = {
     accentGradient: 'accent_gradient',
@@ -46,8 +47,6 @@ export const Icon = memo(
                 {...rest}
             >
                 <Defs>
-                    {/* // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                                // @ts-expect-error */}
                     <LinearGradient
                         id={GRADIENTS.accentGradient}
                         x1='0%'

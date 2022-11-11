@@ -1,8 +1,6 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useCallback, useContext, useState } from 'react';
 
-import { Pallete, Theme } from '@shared/types';
-
-type Color = keyof Pallete | (string & {});
+import { Color, Pallete, Theme } from '@shared/types';
 
 export interface ThemeContext {
     theme: Theme;
@@ -20,7 +18,6 @@ const palette: Pallete = {
     accent200: '#F61256',
     white: '#FFFFFF',
     black100: '#332F48',
-    black200: '#555265',
     gray100: '#555265',
     gray200: '#BBBCBD',
     gray300: '#F3F4F6',
@@ -44,7 +41,13 @@ export const ThemeProvider = ({ children, theme }: Props) => {
 
 export const useTheme = () => {
     const { theme } = useContext(themeContext);
-    const getColor = (color: Color) => theme.palette[color as keyof Pallete] || color;
+    const getColor = useCallback(
+        (color: Color) => {
+            return (theme.palette[color as keyof Pallete] as Color) || color;
+        },
+        [theme]
+    );
+
     return {
         theme,
         getColor,

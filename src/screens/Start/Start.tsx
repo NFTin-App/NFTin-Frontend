@@ -247,7 +247,7 @@ export const Start = () => {
                                 numberOfLines={2}
                                 fontSize={14}
                                 textAlign='center'
-                                color='black200'
+                                color='gray100'
                             >
                                 Meet, evaluate and earn on your nft collection
                             </Text>

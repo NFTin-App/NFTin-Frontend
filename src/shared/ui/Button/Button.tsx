@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { Text } from '../Text';
+import { Text } from '../Text/Text';
 import { TouchableOpacity } from '../TouchableOpacity';
 
 type Props = Omit<React.ComponentProps<typeof TouchableOpacity>, 'children'> & {

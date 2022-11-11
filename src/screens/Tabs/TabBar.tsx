@@ -38,6 +38,7 @@ const tabbarShape = `
     L 0 ${TABBAR_HEIGHT}
     `;
 
+const disabled = ['search', 'home', 'activity'];
 export const TabBar = ({ state, descriptors }: BottomTabBarProps) => {
     assert(state.routes.length === 4);
 
@@ -47,12 +48,13 @@ export const TabBar = ({ state, descriptors }: BottomTabBarProps) => {
         () =>
             state.routes.map((route, index) => {
                 const { options } = descriptors[route.key];
+                const isDisabled = disabled.includes(options.title || '');
 
                 return (
                     <TabBarButton
                         key={route.key}
                         route={route as RouteProp<RootTabParamList, keyof RootTabParamList>}
-                        focused={state.index === index}
+                        focused={isDisabled || state.index === index}
                         {...options}
                     />
                 );

@@ -1,4 +1,5 @@
 [
+    { "inputs": [], "stateMutability": "nonpayable", "type": "constructor" },
     {
         "anonymous": false,
         "inputs": [
@@ -124,13 +125,19 @@
     },
     {
         "inputs": [
-            { "internalType": "uint256", "name": "profileId", "type": "uint256" },
-            { "internalType": "uint256", "name": "pubId", "type": "uint256" },
-            { "internalType": "bytes", "name": "data", "type": "bytes" }
+            { "internalType": "uint256", "name": "", "type": "uint256" },
+            { "internalType": "uint256", "name": "", "type": "uint256" }
         ],
-        "name": "collect",
-        "outputs": [],
-        "stateMutability": "nonpayable",
+        "name": "activityPerDay",
+        "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "activityPriceScaler",
+        "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "stateMutability": "view",
         "type": "function"
     },
     {
@@ -157,6 +164,23 @@
             { "internalType": "uint256", "name": "pubIdPointed", "type": "uint256" }
         ],
         "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "dailyRewardLimit",
+        "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            { "internalType": "uint256", "name": "_profileId", "type": "uint256" },
+            { "internalType": "uint256", "name": "_postId", "type": "uint256" }
+        ],
+        "name": "disablePost",
+        "outputs": [],
+        "stateMutability": "nonpayable",
         "type": "function"
     },
     {
@@ -214,6 +238,34 @@
         "type": "function"
     },
     {
+        "inputs": [{ "internalType": "uint256", "name": "_profileId", "type": "uint256" }],
+        "name": "getRating",
+        "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [{ "internalType": "uint256", "name": "_profileId", "type": "uint256" }],
+        "name": "getReward",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
+        "name": "isOnboarded",
+        "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "name": "lastRewardRating",
+        "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
         "inputs": [],
         "name": "lensAddress",
         "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
@@ -256,6 +308,21 @@
         "type": "function"
     },
     {
+        "inputs": [
+            { "internalType": "uint256", "name": "", "type": "uint256" },
+            { "internalType": "uint256", "name": "", "type": "uint256" }
+        ],
+        "name": "nfts",
+        "outputs": [
+            { "internalType": "address", "name": "nftAddress", "type": "address" },
+            { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+            { "internalType": "uint256", "name": "postId", "type": "uint256" },
+            { "internalType": "enum NFTinStorage.nftType", "name": "nftType", "type": "uint8" }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
         "inputs": [{ "internalType": "uint256", "name": "_profileId", "type": "uint256" }],
         "name": "onboardNewProfile",
         "outputs": [],
@@ -263,27 +330,20 @@
         "type": "function"
     },
     {
+        "inputs": [],
+        "name": "owner",
+        "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
         "inputs": [
-            {
-                "components": [
-                    { "internalType": "uint256", "name": "profileId", "type": "uint256" },
-                    { "internalType": "string", "name": "contentURI", "type": "string" },
-                    { "internalType": "address", "name": "collectModule", "type": "address" },
-                    { "internalType": "bytes", "name": "collectModuleInitData", "type": "bytes" },
-                    { "internalType": "address", "name": "referenceModule", "type": "address" },
-                    { "internalType": "bytes", "name": "referenceModuleInitData", "type": "bytes" }
-                ],
-                "internalType": "struct DataTypes.PostData",
-                "name": "vars",
-                "type": "tuple"
-            }
-        ],
-        "name": "post",
-        "outputs": [
-            { "internalType": "bool", "name": "", "type": "bool" },
+            { "internalType": "uint256", "name": "", "type": "uint256" },
             { "internalType": "uint256", "name": "", "type": "uint256" }
         ],
-        "stateMutability": "nonpayable",
+        "name": "postEnable",
+        "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+        "stateMutability": "view",
         "type": "function"
     },
     {
@@ -297,6 +357,13 @@
         "type": "function"
     },
     {
+        "inputs": [],
+        "name": "postPriceScaler",
+        "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
         "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
         "name": "profiles",
         "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
@@ -304,8 +371,59 @@
         "type": "function"
     },
     {
+        "inputs": [
+            { "internalType": "uint256", "name": "", "type": "uint256" },
+            { "internalType": "uint256", "name": "", "type": "uint256" }
+        ],
+        "name": "pubRating",
+        "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
         "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
         "name": "rating",
+        "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "registrationBonus",
+        "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "name": "rewardBalances",
+        "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "rewardsScaler",
+        "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            { "internalType": "uint256", "name": "", "type": "uint256" },
+            { "internalType": "uint256", "name": "", "type": "uint256" }
+        ],
+        "name": "rewardsTime",
+        "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            { "internalType": "uint256", "name": "", "type": "uint256" },
+            { "internalType": "uint256", "name": "", "type": "uint256" }
+        ],
+        "name": "rewardsValue",
         "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
         "stateMutability": "view",
         "type": "function"
@@ -387,11 +505,35 @@
                 "internalType": "struct DataTypes.PostData",
                 "name": "vars",
                 "type": "tuple"
-            }
+            },
+            { "internalType": "address", "name": "_nftAddress", "type": "address" },
+            { "internalType": "uint256", "name": "_tokenId", "type": "uint256" },
+            { "internalType": "enum NFTinStorage.nftType", "name": "_type", "type": "uint8" }
         ],
         "name": "setPost",
         "outputs": [],
         "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [{ "internalType": "address", "name": "_tinToken", "type": "address" }],
+        "name": "setTinToken",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "testVar",
+        "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "tinToken",
+        "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+        "stateMutability": "view",
         "type": "function"
     }
 ]

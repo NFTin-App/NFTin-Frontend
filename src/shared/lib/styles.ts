@@ -2,14 +2,11 @@ import { FlexStyle, ImageStyle, TextStyle, ViewStyle } from 'react-native';
 import ReactNativeStyleAttributes from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 import { isUndefined, omitBy, pick } from 'lodash';
 
-import { Pallete, Theme } from '@shared/types';
+import { Color, ColorAttributes, Pallete, Theme } from '@shared/types';
 
 import { useTheme } from './theme';
 
 const REACT_NATIVE_STYLE_ATTRIBUTES = Object.keys(ReactNativeStyleAttributes);
-
-type Color = keyof Pallete | (string & {});
-type ColorAttributes = 'bgColor' | 'backgroundColor' | 'color' | 'borderColor';
 
 interface FlexStyleAliases {
     p?: FlexStyle['padding'];
@@ -28,11 +25,11 @@ type ColorProps = Partial<Record<ColorAttributes, Color>>;
 
 type FlexStyleProps = FlexStyle & FlexStyleAliases;
 
-export type ViewStyleProps = ViewStyle & FlexStyleAliases & ColorProps;
+export type ViewStyleProps = Omit<ViewStyle, ColorAttributes> & FlexStyleAliases & ColorProps;
 
 export type ImageStyleProps = ImageStyle & FlexStyleAliases;
 
-export type TextStyleProps = TextStyle & ColorProps;
+export type TextStyleProps = Omit<TextStyle, ColorAttributes> & ColorProps;
 
 export const getThemeColor = (theme: Theme, color: Color | undefined): string | undefined => {
     return theme.palette[color as keyof Pallete] || color;
@@ -64,7 +61,7 @@ const useColorProps = <T extends ColorProps>(props: T): ColorProps => {
     };
 };
 
-export const useViewStyle = (props: ViewStyleProps): ViewStyle => {
+export const useViewStyle = <T extends ColorProps = ViewStyleProps>(props: T): ViewStyle => {
     const colorProps = useColorProps(props);
     return omitBy(
         {

@@ -3,6 +3,7 @@ import { compose } from 'recompose';
 import { withAppInit } from './withAppInit';
 import { withAuth } from './withAuth';
 import { withConnector } from './withConnector';
+import { withMoralis } from './withMoralis';
 import { withNavigation } from './withNavigation';
 import { withSafeArea } from './withSafeArea';
 import { withTheme } from './withTheme';
@@ -15,5 +16,6 @@ export const withProviders = compose(
     withNavigation,
     withConnector,
     withAuth,
+    withMoralis,
     withAppInit
 );

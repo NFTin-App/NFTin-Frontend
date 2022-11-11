@@ -3,7 +3,7 @@ import { FlatList, ListRenderItem } from 'react-native';
 import { useEvent, useGate, useStore, useUnit } from 'effector-react';
 
 import { ProfileItem as TProfileItem, profileModel } from '@entities/profile';
-import { authModel } from '@features/auth';
+import { authModel, InitProfileButton } from '@features/auth';
 import { OutlineButton, Text, View } from '@shared/ui';
 
 import { ProfileItem } from './ProfileSelectItem';
@@ -14,8 +14,6 @@ export const SelectLensProfile = () => {
 
     const [profileId, setProfileId] = useUnit([$profileId, updateProfileId]);
     const profiles = useStore(profileModel.$profiles);
-    const linkLensProfileToAddress = useEvent(authModel.linkLensProfileToAddress);
-    const [isPending, setIsPending] = useState(false);
 
     const onSelectProfile = (id: string) => {
         setProfileId(id);
@@ -33,15 +31,6 @@ export const SelectLensProfile = () => {
             />
         );
     };
-
-    const onLinkAdress = async () => {
-        if (profileId) {
-            setIsPending(true);
-            linkLensProfileToAddress(profileId);
-        }
-    };
-
-    const buttonColor = !profileId ? 'gray200' : 'purple';
 
     return (
         <View backgroundColor='white' height='100%' flex={3}>
@@ -69,16 +58,8 @@ export const SelectLensProfile = () => {
             </View>
 
             <View paddingHorizontal={24} flex={1}>
-                <OutlineButton
-                    disabled={isPending}
-                    borderColor={buttonColor}
-                    textAttributes={{
-                        color: buttonColor,
-                    }}
-                    // TODO обработка завершение контракта, сделать лоадинг
-                    title={isPending ? 'LOADING...' : 'Continue'}
-                    onPress={onLinkAdress}
-                />
+                <InitProfileButton profileId={profileId} />
+
                 <Text
                     fontSize={12}
                     fontWeight='400'

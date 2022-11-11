@@ -4,8 +4,11 @@ import { viewerModel } from '@entities/viewer';
 import { linkLensProfileToAddressFx as linkLensProfileToAddressFxApi } from '@shared/api/nftinContract';
 import { POLYGON_CHAIN_ID } from '@shared/lib';
 import { ProfileId } from '@shared/types';
+import { setDispatcherFx as setDispatcherFxApi } from '@shared/api/lensHubContract';
+import { approveTokenFx } from '@shared/api/tokenContract';
 
 const linkLensProfileToAddressFx = attach({ effect: linkLensProfileToAddressFxApi });
+const setDispatcherFx = attach({ effect: setDispatcherFxApi });
 
 export const connectWalletFx = attach({
     source: viewerModel.$connector,
@@ -23,14 +26,13 @@ export const killWalletSessonFx = attach({
     },
 });
 
-export const linkLensProfileToAddressDone = linkLensProfileToAddressFx.doneData;
-
-export const linkLensProfileToAddress = createEvent<ProfileId>();
-
-sample({
-    clock: linkLensProfileToAddress,
-    fn: (profileId) => ({ profileId }),
-    target: linkLensProfileToAddressFx,
+export const initProfileFx = attach({
+    mapParams: (profileId: string) => profileId,
+    effect: createEffect(async (profileId: string) => {
+        await setDispatcherFx({ profileId });
+        await approveTokenFx();
+        await linkLensProfileToAddressFx({ profileId });
+    }),
 });
 
 sample({

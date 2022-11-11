@@ -1,9 +1,11 @@
 import { createEvent, createStore, sample } from 'effector';
 
-import { setContractFx } from '@shared/api/nftinContract';
+import { setNftinContractFx } from '@shared/api/nftinContract';
 import { Nullable, Signer } from '@shared/types';
 
 import { providerInited } from './provider';
+import { setTokenContractFx } from '@shared/api/tokenContract';
+import { setLensHubContractFx } from '@shared/api/lensHubContract';
 
 export const signerInited = createEvent<Signer>();
 
@@ -19,5 +21,5 @@ sample({
     clock: signerInited,
     source: $signer,
     filter: (signer) => !!signer,
-    target: setContractFx,
+    target: [setNftinContractFx, setTokenContractFx, setLensHubContractFx],
 });
