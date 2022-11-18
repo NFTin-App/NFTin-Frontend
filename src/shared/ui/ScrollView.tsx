@@ -1,12 +1,14 @@
-import { memo } from 'react';
+import React from 'react';
 import { ScrollView as RNScrollView, ScrollViewProps, StyleSheet } from 'react-native';
 
 import { useViewStyle, ViewStyleProps } from '@shared/lib';
 
 type Props = ScrollViewProps & ViewStyleProps;
 
-export const ScrollViwe = memo(({ style, ...rest }: Props) => {
-    const viewStyle = useViewStyle(rest);
+export const ScrollView = React.forwardRef<RNScrollView | null, Props>(
+    ({ style, ...rest }, ref) => {
+        const viewStyle = useViewStyle(rest);
 
-    return <RNScrollView style={StyleSheet.compose(viewStyle, style)} {...rest} />;
-});
+        return <RNScrollView ref={ref} style={StyleSheet.compose(viewStyle, style)} {...rest} />;
+    }
+);

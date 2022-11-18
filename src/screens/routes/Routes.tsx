@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ConnectWalletPage } from '@screens/ConnectWallet';
 import { ConnectLensProfile, SelectLensProfile } from '@screens/lens';
 import { Loading } from '@screens/Loading';
+import { Onboarding } from '@screens/Onboarding';
 import { Start } from '@screens/Start';
 import { Tabs } from '@screens/Tabs';
 import { RootStackParamList } from '@shared/types';
@@ -28,6 +29,7 @@ export const Routing = () => {
                 <>
                     <Stack.Screen name='Start' component={Start} />
                     <Stack.Screen name='ConnectWallet' component={ConnectWalletPage} />
+                    <Stack.Screen name='Onboarding' component={Onboarding} />
                 </>
             )}
             {!isLensConnected && (

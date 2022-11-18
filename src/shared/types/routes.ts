@@ -13,6 +13,7 @@ interface StackParamList {
     SelectLensProfile: undefined;
     Loading: undefined;
     Start: undefined;
+    Onboarding: undefined;
     Tabs: NavigatorScreenParams<TabParamList>;
 }
 

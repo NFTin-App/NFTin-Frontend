@@ -9,7 +9,7 @@ import { useTheme } from './theme';
 const REACT_NATIVE_STYLE_ATTRIBUTES = Object.keys(ReactNativeStyleAttributes);
 
 type Color = keyof Pallete | (string & {});
-type ColorAttributes = 'bgColor' | 'backgroundColor' | 'color' | 'borderColor';
+type ColorAttributes = 'bgColor' | 'backgroundColor' | 'color' | 'borderColor' | 'shadowColor';
 
 interface FlexStyleAliases {
     p?: FlexStyle['padding'];
@@ -60,6 +60,7 @@ const useColorProps = <T extends ColorProps>(props: T): ColorProps => {
     return {
         backgroundColor: backgroundColor ? getColor(backgroundColor) : undefined,
         borderColor: props.borderColor ? getColor(props.borderColor) : undefined,
+        shadowColor: props.shadowColor ? getColor(props.shadowColor) : undefined,
         color: props.color ? getColor(props.color) : undefined,
     };
 };

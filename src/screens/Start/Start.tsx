@@ -17,7 +17,7 @@ import {
     HeartIcon,
     Image,
     ImageBackground,
-    SafeAreaView,
+    ScreenContainer,
     Text,
     View,
 } from '@shared/ui';
@@ -108,7 +108,7 @@ export const Start = () => {
         actionButtonAnimationController,
     ]);
 
-    const handleButtonPress = useCallback(() => navigate('ConnectWallet'), [navigate]);
+    const handleButtonPress = useCallback(() => navigate('Onboarding'), [navigate]);
 
     const rocketStyle = useAnimatedStyle(() => {
         const rocketY = interpolate(rocketAnimationController.value, [0, 1], [1200, 0]);
@@ -157,7 +157,7 @@ export const Start = () => {
     }));
 
     return (
-        <SafeAreaView flex={1}>
+        <ScreenContainer noScroll noPadding>
             <ImageBackground flex={1} source={background} resizeMode='stretch'>
                 <View flex={1} paddingHorizontal={24} paddingBottom={40}>
                     <View alignItems='center' position='absolute' top={42} left={0} right={0}>
@@ -258,7 +258,7 @@ export const Start = () => {
                     </View>
                 </View>
             </ImageBackground>
-        </SafeAreaView>
+        </ScreenContainer>
     );
 };
 
