@@ -68,7 +68,7 @@ export const OnboardingSlider = memo(({ children, onFinish }: Props) => {
         }
     }, [step, slidesCount, width, onFinish]);
 
-    const dots = [...new Array(slidesCount)].map((_, index) => (
+    const dots = Array.from({ length: slidesCount }, (_, index) => (
         <DotIcon
             key={index}
             width={6}

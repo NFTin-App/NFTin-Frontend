@@ -6,7 +6,6 @@ export * from './ImageBackground';
 export * from './LinearGradient';
 export * from './SafeAreaView';
 export * from './ScreenContainer';
-export * from './ScreenHeader';
 export * from './ScrollView';
 export * from './Text';
 export * from './TouchableOpacity';

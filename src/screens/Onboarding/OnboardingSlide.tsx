@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { Body2, Title1, View } from '@shared/ui';
+import { Body, Heading, View } from '@shared/ui';
 
 interface Props {
     title: string;
@@ -11,13 +11,13 @@ interface Props {
 export const OnboardingSlide = memo(({ title, image, description }: Props) => {
     return (
         <View flex={1} alignItems='center'>
-            <Title1 color='black100'>{title}</Title1>
+            <Heading color='black100'>{title}</Heading>
             <View mt={29} mb={24}>
                 {image}
             </View>
-            <Body2 color='black100' textAlign='center'>
+            <Body lineHeight={22} color='black100' textAlign='center'>
                 {description}
-            </Body2>
+            </Body>
         </View>
     );
 });
