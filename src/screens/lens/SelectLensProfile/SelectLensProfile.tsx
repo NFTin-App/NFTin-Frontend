@@ -1,10 +1,9 @@
-import { useState } from 'react';
 import { FlatList, ListRenderItem } from 'react-native';
-import { useEvent, useGate, useStore, useUnit } from 'effector-react';
+import { useGate, useStore, useUnit } from 'effector-react';
 
 import { ProfileItem as TProfileItem, profileModel } from '@entities/profile';
-import { authModel, InitProfileButton } from '@features/auth';
-import { OutlineButton, Text, View } from '@shared/ui';
+import { InitProfileButton } from '@features/auth';
+import { Text, View } from '@shared/ui';
 
 import { ProfileItem } from './ProfileSelectItem';
 import { $profileId, pageGate, updateProfileId } from './selectLensProfileModel';

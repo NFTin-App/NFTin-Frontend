@@ -1,6 +1,8 @@
+import { useEvent, useStore } from 'effector-react';
+
 import { Nullable } from '@shared/types';
 import { OutlineButton } from '@shared/ui';
-import { useEvent, useStore } from 'effector-react';
+
 import { initProfileFx } from '../authModel';
 
 interface Props {
@@ -22,7 +24,7 @@ export const InitProfile = ({ profileId }: Props) => {
             }}
             // TODO обработка завершение контракта, сделать лоадинг
             title={isPending ? 'LOADING...' : 'Continue'}
-            onPress={() => initProfile(profileId!!)}
+            onPress={async () => await initProfile(profileId!)}
         />
     );
 };

@@ -1,5 +1,6 @@
 import * as React from 'react';
-import Svg, { Path } from 'react-native-svg';
+import { Path } from 'react-native-svg';
+
 import { Icon } from './Icon';
 
 type Props = React.ComponentProps<typeof Icon>;

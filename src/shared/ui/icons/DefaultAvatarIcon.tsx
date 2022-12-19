@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import { Defs, Path, Rect, Stop } from 'react-native-svg';
+
 import { LinearGradient } from '../Svg/LinearGradient';
 
 import { Icon } from './Icon';

@@ -43,7 +43,7 @@ export const useTheme = () => {
     const { theme } = useContext(themeContext);
     const getColor = useCallback(
         (color: Color) => {
-            return (theme.palette[color as keyof Pallete] as Color) || color;
+            return theme.palette[color as keyof Pallete] || color;
         },
         [theme]
     );

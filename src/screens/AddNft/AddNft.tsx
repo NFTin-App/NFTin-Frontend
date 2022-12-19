@@ -1,11 +1,12 @@
+import { useStoreMap } from 'effector-react';
+
 import { NftItem, nftModel } from '@entities/nft';
 import { AddNftButton } from '@features/post';
 import { RootStackScreenProps } from '@shared/types';
-import { GradientView, OutlineButton, Text, View } from '@shared/ui';
-import { useStoreMap } from 'effector-react';
+import { GradientView, Text, View } from '@shared/ui';
 
 export const AddNft = ({ route }: RootStackScreenProps<'AddNft'>) => {
-    const nft = useStoreMap({
+    const currentNft = useStoreMap({
         store: nftModel.$nfts,
         keys: [route.params.id],
         fn: (nfts, [tokenId]) => {
@@ -13,7 +14,7 @@ export const AddNft = ({ route }: RootStackScreenProps<'AddNft'>) => {
         },
     });
 
-    if (!nft) {
+    if (!currentNft) {
         return null;
     }
 
@@ -30,7 +31,7 @@ export const AddNft = ({ route }: RootStackScreenProps<'AddNft'>) => {
                     Your chose:
                 </Text>
                 <View height={208} width={159}>
-                    <NftItem name={nft.name} tokenId={nft.tokenId} />
+                    <NftItem name={currentNft.name} tokenId={currentNft.tokenId} />
                 </View>
             </View>
 

@@ -18,7 +18,7 @@ export const $isLensConnected = $viewer.map((viewer) => isValidProfile(viewer?.p
 export const getViewerProfileId = createEvent();
 export const getViewerProfileIdFinished = getViewerProfileIdFx.doneData;
 export const $isGetViewerProfileIdPending = getViewerProfileIdFx.pending;
-debug(getViewerProfileIdFx.doneData);
+
 sample({
     clock: getViewerProfileId,
     source: $viewer,

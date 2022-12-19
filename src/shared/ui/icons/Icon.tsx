@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 import Svg, { Defs, Stop, SvgProps } from 'react-native-svg';
 
 import { useTheme, useViewStyle, ViewStyleProps } from '@shared/lib';
+
 import { LinearGradient } from '../Svg/LinearGradient';
 
 const GRADIENTS: Record<string, string> = {

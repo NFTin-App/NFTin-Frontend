@@ -1,6 +1,8 @@
 import * as React from 'react';
-import Svg, { Path, Defs, Stop } from 'react-native-svg';
+import { Defs, Path, Stop } from 'react-native-svg';
+
 import { LinearGradient } from '../Svg/LinearGradient';
+
 import { Icon } from './Icon';
 
 type Props = React.ComponentProps<typeof Icon>;

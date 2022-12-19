@@ -1,5 +1,7 @@
-import { DefaultAvatarIcon, Text } from '@shared/ui';
 import { useStore } from 'effector-react';
+
+import { DefaultAvatarIcon, Text } from '@shared/ui';
+
 import { $profile } from '../model';
 
 export const Avatar = () => {

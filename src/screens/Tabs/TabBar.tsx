@@ -48,7 +48,7 @@ export const TabBar = ({ state, descriptors }: BottomTabBarProps) => {
         () =>
             state.routes.map((route, index) => {
                 const { options } = descriptors[route.key];
-                const isDisabled = disabled.includes(options.title || '');
+                const isDisabled = disabled.includes(options.title ?? '');
 
                 return (
                     <TabBarButton

@@ -1,7 +1,9 @@
 import * as React from 'react';
-import Svg, { Path, Defs, Stop, Circle } from 'react-native-svg';
+import { Circle, Defs, Path, Stop } from 'react-native-svg';
+
 import { G } from '../Svg/G';
 import { LinearGradient } from '../Svg/LinearGradient';
+
 import { Icon } from './Icon';
 
 type Props = React.ComponentProps<typeof Icon>;

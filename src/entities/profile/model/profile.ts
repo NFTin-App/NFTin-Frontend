@@ -1,11 +1,11 @@
 import { attach, createEvent, createStore, sample } from 'effector';
+import { debug } from 'patronum';
 
 import { getProfileFx as getProfileFxApi } from '@shared/api/lens';
 import { getProfileIdFx as getProfileIdFxApi } from '@shared/api/nftinContract';
 import { Address, Nullable, ProfileId } from '@shared/types';
 
 import { Profile } from '../profileTypes';
-import { debug } from 'patronum';
 
 const getProfileIdFx = attach({ effect: getProfileIdFxApi });
 const getProfileFx = attach({ effect: getProfileFxApi });
@@ -41,7 +41,6 @@ sample({
     target: getProfileFx,
 });
 
-debug(getProfileIdFx.doneData);
 sample({
     clock: getProfileIdFx.doneData,
     target: getProfile,

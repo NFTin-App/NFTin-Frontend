@@ -1,8 +1,10 @@
+import { FlatList, ListRenderItem } from 'react-native';
+import { useGate, useStore } from 'effector-react';
+
 import { Nft, NftItem, nftModel } from '@entities/nft';
 import { RootStackScreenProps } from '@shared/types';
-import { DropShadow, GradientView, View } from '@shared/ui';
-import { useGate, useStore } from 'effector-react';
-import { FlatList, ListRenderItem } from 'react-native';
+import { GradientView, View } from '@shared/ui';
+
 import { pageGate } from './nftListModel';
 
 export const NftsList = ({ navigation }: RootStackScreenProps<'NftsList'>) => {
@@ -29,7 +31,7 @@ export const NftsList = ({ navigation }: RootStackScreenProps<'NftsList'>) => {
             flex={1}
         >
             <FlatList
-                data={nfts || []}
+                data={nfts ?? []}
                 renderItem={renderNft}
                 numColumns={2}
                 pagingEnabled

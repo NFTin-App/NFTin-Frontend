@@ -1,8 +1,10 @@
+import { attach, createEvent, createStore, sample } from 'effector';
+import { debug } from 'patronum';
+
 import { getWalletNftsFx as getWalletNftsFxApi } from '@shared/api/moralis';
 import { LENS_TOKEN_ADDRESS } from '@shared/lib';
 import { Address, Nullable } from '@shared/types';
-import { attach, createEvent, createStore, restore, sample } from 'effector';
-import { debug } from 'patronum';
+
 import { Nft } from './nftTypes';
 
 const getWalletNftsFx = attach({ effect: getWalletNftsFxApi });
@@ -15,7 +17,7 @@ sample({
     clock: getWalletNfts,
     target: getWalletNftsFx,
 });
-debug(getWalletNftsFx.doneData);
+
 sample({
     clock: getWalletNftsFx.doneData,
     filter: Boolean,

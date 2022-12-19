@@ -1,8 +1,4 @@
-import { useNavigation } from '@react-navigation/native';
-import { ProfileScreenNavigationProp, RootStackScreenProps } from '@shared/types';
 import { DropShadow, LightningIcon, Text, TouchableOpacity, View } from '@shared/ui';
-
-import { Nft } from '../nftTypes';
 
 interface Props {
     name: string;
@@ -24,20 +20,20 @@ export const NftItem = ({ name, onPress, tokenId }: Props) => {
         >
             <TouchableOpacity
                 onPress={() => onPress?.(tokenId)}
-                backgroundColor={'white'}
+                backgroundColor='white'
                 flex={1}
                 borderRadius={12}
             >
-                <View backgroundColor={'#D4D4D4'} height={159} borderRadius={12} />
+                <View backgroundColor='#D4D4D4' height={159} borderRadius={12} />
 
                 <View paddingTop={8} paddingHorizontal={12} paddingBottom={12}>
-                    <Text color='black100' fontWeight={'500'}>
+                    <Text color='black100' fontWeight='500'>
                         {name}
                     </Text>
 
                     <View flexDirection='row' alignItems='center'>
                         <LightningIcon />
-                        <Text color='black100' fontWeight={'500'}>
+                        <Text color='black100' fontWeight='500'>
                             193
                         </Text>
                     </View>

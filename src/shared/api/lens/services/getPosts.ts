@@ -1,8 +1,9 @@
-import { ProfileId } from '@shared/types';
 import { createEffect } from 'effector';
 import { selectFields } from 'gqty';
 
-import { PublicationTypes, query, resolved } from '../generated';
+import { ProfileId } from '@shared/types';
+
+import { query, resolved } from '../generated';
 import { QueryParams } from '../types';
 
 interface GetPostsByIds extends QueryParams {
@@ -11,7 +12,7 @@ interface GetPostsByIds extends QueryParams {
 }
 
 export const getPostsFx = createEffect(
-    async ({ postIds, profileId, queryParams }: GetPostsByIds) =>
+    async ({ queryParams }: GetPostsByIds) =>
         await resolved(() => {
             const posts = query.publications({
                 request: {

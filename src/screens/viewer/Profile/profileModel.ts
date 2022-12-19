@@ -1,14 +1,13 @@
-import { attach, createEffect, createEvent, restore, sample } from 'effector';
+import { createEffect, createEvent, restore, sample } from 'effector';
 import { createGate } from 'effector-react';
-import { condition, debug } from 'patronum';
+import { condition } from 'patronum';
 
 import { profileModel } from '@entities/profile';
 import { isValidProfile, viewerModel } from '@entities/viewer';
-import { Address, Connector, Nullable } from '@shared/types';
+import {} from '@shared/api/nftinContract';
+import { Connector, Nullable } from '@shared/types';
 
 import { ProfileStatus } from './profileTypes';
-import { nftModel } from '@entities/nft';
-import {} from '@shared/api/nftinContract';
 
 export const updateProfileStatus = createEvent<ProfileStatus>();
 

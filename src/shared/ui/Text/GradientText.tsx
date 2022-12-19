@@ -1,13 +1,12 @@
 import React from 'react';
-import Svg, { Defs, Stop } from 'react-native-svg';
-import { TSpan, SvgText } from '../Svg';
-import MaskedView from '@react-native-community/masked-view';
-import { View } from '../View';
-import { Color } from '@shared/types';
-import LinearGradient from 'react-native-linear-gradient';
-import { Text } from './Text';
-import { TextStyleProps } from '@shared/lib';
 import { TextProps } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+
+import MaskedView from '@react-native-community/masked-view';
+import { TextStyleProps } from '@shared/lib';
+import { Color } from '@shared/types';
+
+import { Text } from './Text';
 
 type Props = TextProps &
     TextStyleProps & {

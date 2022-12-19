@@ -1,2 +1,2 @@
-export * from './setDispatcher';
 export * from './getPosts';
+export * from './setDispatcher';

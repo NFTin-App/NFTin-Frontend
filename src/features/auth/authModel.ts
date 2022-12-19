@@ -1,11 +1,10 @@
-import { attach, createEffect, createEvent, sample } from 'effector';
+import { attach, createEffect, sample } from 'effector';
 
 import { viewerModel } from '@entities/viewer';
-import { linkLensProfileToAddressFx as linkLensProfileToAddressFxApi } from '@shared/api/nftinContract';
-import { POLYGON_CHAIN_ID } from '@shared/lib';
-import { ProfileId } from '@shared/types';
 import { setDispatcherFx as setDispatcherFxApi } from '@shared/api/lensHubContract';
+import { linkLensProfileToAddressFx as linkLensProfileToAddressFxApi } from '@shared/api/nftinContract';
 import { approveTokenFx } from '@shared/api/tokenContract';
+import { POLYGON_CHAIN_ID } from '@shared/lib';
 
 const linkLensProfileToAddressFx = attach({ effect: linkLensProfileToAddressFxApi });
 const setDispatcherFx = attach({ effect: setDispatcherFxApi });

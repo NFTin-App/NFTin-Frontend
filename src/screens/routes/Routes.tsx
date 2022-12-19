@@ -2,16 +2,16 @@ import { useStore } from 'effector-react';
 
 import { viewerModel } from '@entities/viewer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { AddNft } from '@screens/AddNft';
 import { ConnectWalletPage } from '@screens/ConnectWallet';
 import { ConnectLensProfile, SelectLensProfile } from '@screens/lens';
 import { Loading } from '@screens/Loading';
+import { NftsList } from '@screens/NftsList';
 import { Start } from '@screens/Start';
 import { Tabs } from '@screens/Tabs';
 import { RootStackParamList } from '@shared/types';
 
 import { generateDefaultScreenOptions } from './lib';
-import { NftsList } from '@screens/NftsList';
-import { AddNft } from '@screens/AddNft';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

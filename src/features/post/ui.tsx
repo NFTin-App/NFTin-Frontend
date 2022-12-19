@@ -1,7 +1,8 @@
-import { viewerModel } from '@entities/viewer';
-import { approveTokenFx } from '@shared/api/tokenContract';
-import { OutlineButton } from '@shared/ui';
 import { useEvent, useStore } from 'effector-react';
+
+import { viewerModel } from '@entities/viewer';
+import { OutlineButton } from '@shared/ui';
+
 import { $postNftPending, postNftFx } from './postModel';
 
 interface Props {
@@ -11,7 +12,6 @@ interface Props {
 
 export const AddNftButton = ({ title, tokenId }: Props) => {
     const postNft = useEvent(postNftFx);
-    const viewer = useStore(viewerModel.$viewer);
     const isPending = useStore($postNftPending);
 
     const onPress = async () => {

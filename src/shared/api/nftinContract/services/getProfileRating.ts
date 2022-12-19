@@ -1,5 +1,6 @@
-import { Address, ProfileId } from '@shared/types';
 import { BigNumber } from 'ethers';
+
+import { ProfileId } from '@shared/types';
 
 import { attachContract } from '../connect';
 
@@ -9,8 +10,8 @@ interface GetProfileRating {
 
 export const getProfileRating = attachContract<GetProfileRating>(
     async ({ contract, profileId }) => {
-        const profile: BigNumber = await contract.getRating(profileId);
-        console.log(profile);
+        await contract.getRating(profileId);
+
         // return profile.toHexString();
     }
 );

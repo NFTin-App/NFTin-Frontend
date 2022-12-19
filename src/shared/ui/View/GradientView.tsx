@@ -1,6 +1,6 @@
-import { forwardRef } from 'react';
-import { StyleSheet, View as RNView, ViewProps } from 'react-native';
+import { StyleSheet } from 'react-native';
 import LinearGradient, { LinearGradientProps } from 'react-native-linear-gradient';
+
 import { useViewStyle, ViewStyleProps } from '@shared/lib';
 
 type Props = LinearGradientProps & Omit<ViewStyleProps, 'end' | 'start'>;

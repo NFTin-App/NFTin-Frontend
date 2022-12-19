@@ -1,4 +1,5 @@
 import { ActionResponse, Nullable } from '@shared/types';
+
 import { LensHub } from './generated';
 
 export type Params<T> = {

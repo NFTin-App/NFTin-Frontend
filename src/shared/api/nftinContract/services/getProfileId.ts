@@ -1,5 +1,6 @@
-import { Address } from '@shared/types';
 import { BigNumber } from 'ethers';
+
+import { Address } from '@shared/types';
 
 import { attachContract } from '../connect';
 

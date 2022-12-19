@@ -1,11 +1,7 @@
 import { FC } from 'react';
 import { createEffect, sample } from 'effector';
 import { createGate, useGate } from 'effector-react';
-import _ from 'lodash';
 import Moralis from 'moralis';
-import { viewerModel } from '@entities/viewer';
-import { Connector } from '@shared/types';
-import { useWalletConnectContext } from '@walletconnect/react-native-dapp';
 
 const appGate = createGate();
 

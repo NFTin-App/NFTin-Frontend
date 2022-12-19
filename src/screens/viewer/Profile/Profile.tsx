@@ -1,35 +1,27 @@
-import { memo, useEffect } from 'react';
-import { useEvent, useGate, useStore } from 'effector-react';
+import { memo } from 'react';
+import { useGate, useStore } from 'effector-react';
 
 import { ProfileAvatar, profileModel } from '@entities/profile';
-import { SignOutButton } from '@features/auth';
 import { useIsFocused } from '@react-navigation/native';
 import { HomeTabScreenProps } from '@shared/types';
 import {
     AddIcon,
-    Button,
     CategoryIcon,
+    DropShadow,
+    GradientText,
     GradientView,
-    Text,
-    TouchableOpacity,
-    View,
     IconButton,
     LightningIcon,
-    GradientText,
+    Text,
     TokenIcon,
-    DropShadow,
+    View,
 } from '@shared/ui';
-import MaskedView from '@react-native-community/masked-view';
+
 import { ProfileLensLink } from './ProfileLensLink';
 import { ProfileLoading } from './ProfileLoading';
 import { $profileStatus, pageGate } from './profileModel';
 import { ProfileStatus } from './profileTypes';
 import { ProfileWalletConnect } from './ProfileWalletConnect';
-import { Stop } from 'react-native-svg';
-import LinearGradient from 'react-native-linear-gradient';
-import { viewerModel } from '@entities/viewer';
-import { nftModel, NftItem, Nft } from '@entities/nft';
-import { FlatList, ListRenderItem } from 'react-native';
 
 const renderProfile = (profileStatus: ProfileStatus) => {
     switch (profileStatus) {

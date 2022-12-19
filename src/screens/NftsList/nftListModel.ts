@@ -1,7 +1,8 @@
-import { nftModel } from '@entities/nft';
-import { viewerModel } from '@entities/viewer';
 import { createEffect, sample } from 'effector';
 import { createGate } from 'effector-react';
+
+import { nftModel } from '@entities/nft';
+import { viewerModel } from '@entities/viewer';
 
 export const pageGate = createGate();
 
